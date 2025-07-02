@@ -1,0 +1,54 @@
+﻿@page
+@using DemoASPApp.model
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+@{
+
+    @if (Common.users.Count > 0)
+    {
+        <table align="center" border="1">
+            <tr>
+                <td>
+                    id
+                </td>
+                <td>
+                   userName
+                </td>
+                <td>
+                    fatherName
+                </td>
+                <td>
+                   email
+                </td>
+                <td>
+                  Desgination
+                </td>
+            </tr>
+            @foreach (User user in Common.users)
+            {
+                <tr>
+                        <td>
+                            @user.id
+                        </td>
+                        <td>
+                            @user.userName
+                        </td>
+                        <td>
+                            @user.fatherName
+                        </td>
+                        <td>
+                            @user.email
+                        </td>
+                        <td>
+                            @user.Desgination
+                        </td>
+                </tr>
+            }
+        </table>
+
+    }
+
+}
