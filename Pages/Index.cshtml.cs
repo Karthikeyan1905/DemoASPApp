@@ -1,29 +1,34 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserManagement.User;
+using DemoASPApp.model;
 
 namespace DemoASPApp.Pages
 {
-    public class LoginModel : PageModel
-    {
-        public void OnGet()
+        public class LoginModel : PageModel
         {
-        }
+            public void OnGet()
+            {
+            }
 
-        public ActionResult OnPost(string uname, string psw)
+        public IActionResult OnPost(string uname, string psw)
         {
-            if (!string.IsNullOrEmpty(uname) && !string.IsNullOrEmpty(psw))
+            if (!string.IsNullOrEmpty(uname))
             {
-                
-               
-                return RedirectToPage("Index1", new { un = uname,pwd= psw,id=2 });
-
+                var user = Common.users.FirstOrDefault(u => u.userName == uname );
+                if (user != null)
+                {
+                    return RedirectToPage("Index1");
+                }
+                else
+                {
+                    ViewData["EMsg"] = "Username not found. Please register first.";
+                    return Page();
+                }
             }
-            else
-            {
 
-                ViewData["EMsg"] = "Invalid User Name/ Password";
-            
-            }
+            ViewData["EMsg"] = "Username is required.";
             return Page();
         }
     }

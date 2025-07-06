@@ -1,9 +1,9 @@
-﻿using DemoASPApp.Pages;
+﻿using UserManagement.User;
 
 namespace DemoASPApp.model
 {
     public class Common
     {
-      public static  List<User> users = new List<User>();
+      public static  List<UserInfo> users = new List<UserInfo>();
     }
 }

@@ -1,0 +1,39 @@
+﻿@page
+@using DemoASPApp.Pages
+@using DemoASPApp.model
+@using UserManagement.User
+@model InfoModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>User Summary</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>UserId</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Aadhar Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserInfo user in Common.users)
+        {
+            <tr>
+                <td>@user.userID</td>
+                <td>@user.userName</td>
+                <td>@user.fatherName</td>
+                <td>@user.AadhaarNumber</td>
+                <td>
+                    <form method="post" asp-page-handler="View">
+                        <input type="hidden" name="userID" value="@user.userID" />
+                        <button type="submit"><a href="/UserData?id=@user.userID" >View</a></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

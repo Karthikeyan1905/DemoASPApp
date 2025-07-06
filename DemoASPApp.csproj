@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="UserManagement">
+      <HintPath>..\UserManagement\bin\Debug\net8.0\UserManagement.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

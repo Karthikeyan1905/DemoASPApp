@@ -1,0 +1,264 @@
+﻿@page
+@model DemoASPApp.Pages.InfoModel
+@{
+    ViewData["Title"] = "This my Page";
+    Layout = "_LoginLayout";
+}
+
+<form method="post">
+    <div class="container">
+        <h1>Register</h1>
+        <p>Please fill this form to create an account in my application.</p>
+        <hr>
+       
+        <label for="psw"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="userName" id="userName" required>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+        <label for="psw-repeat"><b>Father Name</b></label>
+        <input type="text" placeholder="Enter Father Name" name="fatherName" id="fatherName" required><br />
+        
+        <label for="psw-repeat"><b>Mother Name</b></label><br />
+        <input type="text" placeholder="Enter Mother Name" name="motherName" id="motherName" required><br />
+        <label for="psw-repeat"><b>Aadhar Number</b></label><br />
+        <input type="number" placeholder="Enter Aadhar Number" name="AadhaarNumber" id="AadhaarNumber" required><br />
+
+        <!-- PAN Card Section -->
+        <label><b>Do you have a PAN card?</b></label><br>
+        <input type="radio" name="hasPan" value="yes" onclick="togglePanField(true)"> Yes
+        <input type="radio" name="hasPan" value="no" onclick="togglePanField(false)"> No<br />
+
+        <div id="panCardDiv" style="display: none; margin-top: 10px;">
+            <label for="panCardNumber"><b>PAN Card Number</b></label><br>
+            <input type="text" placeholder="Enter PAN Card Number" name="panCardNumber" id="panCardNumber"><br>
+        </div>
+
+        <!-- Passport Section -->
+        <label><b>Do you have a Passport?</b></label><br>
+        <input type="radio" name="hasPassport" value="yes" onclick="togglePassportField(true)"> Yes
+        <input type="radio" name="hasPassport" value="no" onclick="togglePassportField(false)"> No<br />
+
+        <div id="passportDiv" style="display: none; margin-top: 10px;">
+            <label for="passportNumber"><b>Passport Number</b></label><br>
+            <input type="text" placeholder="Enter Passport Number" name="panCardNo" id="panCardNo"><br>
+        </div>
+
+        <!-- Phone Numbers -->
+        <label for="phoneNumber"><b>Phone Number</b></label><br>
+        <input type="number" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required><br><br>
+
+        <label for="phoneNumber2"><b>Phone Number 2</b></label><br>
+        <input type="number" placeholder="Enter Second Phone Number" name="phoneNumber2" id="phoneNumber2"><br>
+
+
+        <!-- Permanent Address -->
+        <fieldset>
+            <legend><b>Permanent Address</b></legend>
+
+            <label for="permDoorNo"><b>Door No</b></label>
+            <input type="text" id="permDoorNo" name="permDoorNo" placeholder="Enter Door No" required>
+
+            <label for="permStreet"><b>Street</b></label>
+            <input type="text" id="permStreet" name="permStreet" placeholder="Enter Street" required>
+
+            <label for="permCity"><b>Town/City</b></label>
+            <input type="text" id="permCity" name="permCity" placeholder="Enter Town/City" required>
+
+            <label for="permDistrict"><b>District</b></label>
+            <input type="text" id="permDistrict" name="permDistrict" placeholder="Enter District" required>
+
+            <label for="permState"><b>State</b></label>
+            <input type="text" id="permState" name="permState" placeholder="Enter State" required>
+
+            <label for="permCountry"><b>Country</b></label>
+            <input type="text" id="permCountry" name="permCountry" placeholder="Enter Country" required>
+
+            <label for="permPincode"><b>Pincode</b></label>
+            <input type="text" id="permPincode" name="permPincode" placeholder="Enter Pincode" required>
+        </fieldset>
+
+        <!-- Current Address -->
+        <fieldset style="margin-top: 20px;">
+            <legend><b>Current Address</b></legend>
+
+            <label for="currDoorNo"><b>Door No</b></label>
+            <input type="text" id="currDoorNo" name="currDoorNo" placeholder="Enter Door No" required>
+
+            <label for="currStreet"><b>Street</b></label>
+            <input type="text" id="currStreet" name="currStreet" placeholder="Enter Street" required>
+
+            <label for="currCity"><b>Town/City</b></label>
+            <input type="text" id="currCity" name="currCity" placeholder="Enter Town/City" required>
+
+            <label for="currDistrict"><b>District</b></label>
+            <input type="text" id="currDistrict" name="currDistrict" placeholder="Enter District" required>
+
+            <label for="currState"><b>State</b></label>
+            <input type="text" id="currState" name="currState" placeholder="Enter State" required>
+
+            <label for="currCountry"><b>Country</b></label>
+            <input type="text" id="currCountry" name="currCountry" placeholder="Enter Country" required>
+
+            <label for="currPincode"><b>Pincode</b></label>
+            <input type="text" id="currPincode" name="currPincode" placeholder="Enter Pincode" required>
+        </fieldset>
+
+        <!-- 10th Education Info -->
+        <fieldset>
+            <legend><b>10th Standard</b></legend>
+
+            <label for="tenthCollege"><b>School Name</b></label>
+            <input type="text" id="tenthCollege" name="tenthCollege" placeholder="Enter School Name" required>
+
+            <label for="tenthBoard"><b>Board</b></label>
+            <input type="text" id="tenthBoard" name="tenthBoard" placeholder="Enter Board Name" required>
+
+            <label for="tenthPercentage"><b>Percentage</b></label>
+            <input type="text" id="tenthPercentage" name="tenthPercentage" placeholder="Enter Percentage" required>
+        </fieldset>
+
+        <!-- 12th Education Info -->
+        <fieldset style="margin-top: 20px;">
+            <legend><b>12th Standard</b></legend>
+
+            <label for="twelfthCollege"><b>School Name</b></label>
+            <input type="text" id="twelfthCollege" name="twelfthCollege" placeholder="Enter School Name" required>
+
+            <label for="twelfthBoard"><b>Board</b></label>
+            <input type="text" id="twelfthBoard" name="twelfthBoard" placeholder="Enter Board Name" required>
+
+            <label for="twelfthPercentage"><b>Percentage</b></label>
+            <input type="text" id="twelfthPercentage" name="twelfthPercentage" placeholder="Enter Percentage" required>
+        </fieldset>
+
+        <!-- Bachelor's Degree Info -->
+        <fieldset style="margin-top: 20px;">
+            <legend><b>Bachelor's Degree</b></legend>
+
+            <label for="bachelorCollege"><b>College Name</b></label>
+            <input type="text" id="bachelorCollege" name="bachelorCollege" placeholder="Enter College Name" required>
+
+            <label for="bachelorUniversity"><b>University Name</b></label>
+            <input type="text" id="bachelorUniversity" name="bachelorUniversity" placeholder="Enter University Name" required>
+
+            <label for="bachelorCourse"><b>Course Name</b></label>
+            <input type="text" id="bachelorCourse" name="bachelorCourse" placeholder="Enter Course Name" required>
+
+            <label for="bachelorPercentage"><b>Percentage</b></label>
+            <input type="text" id="bachelorPercentage" name="bachelorPercentage" placeholder="Enter Percentage" required>
+        </fieldset>
+
+        <!-- Master's Degree Info -->
+        <fieldset style="margin-top: 20px;">
+            <legend><b>Master's Degree</b></legend>
+
+            <label for="masterCollege"><b>College Name</b></label>
+            <input type="text" id="masterCollege" name="masterCollege" placeholder="Enter College Name" required>
+
+            <label for="masterUniversity"><b>University Name</b></label>
+            <input type="text" id="masterUniversity" name="masterUniversity" placeholder="Enter University Name" required>
+
+            <label for="masterCourse"><b>Course Name</b></label>
+            <input type="text" id="masterCourse" name="masterCourse" placeholder="Enter Course Name" required>
+
+            <label for="masterPercentage"><b>Percentage</b></label>
+            <input type="text" id="masterPercentage" name="masterPercentage" placeholder="Enter Percentage" required>
+        </fieldset>
+
+        <!-- Has Experience -->
+        <label><b>Do you have prior work experience?</b></label><br>
+        <input type="radio" name="hasExperience" value="yes" onclick="toggleExperience(true)"> Yes
+        <input type="radio" name="hasExperience" value="no" onclick="toggleExperience(false)"> No
+
+        <!-- Experience Section (Initially Hidden) -->
+        <div id="experienceSection" style="display: none; margin-top: 20px;">
+
+            <!-- Company 1 -->
+            <fieldset>
+                <legend><b>Company 1</b></legend>
+
+                <label for="company1Name"><b>Company Name</b></label>
+                <input type="text" id="company1Name" name="company1Name" placeholder="Enter Company Name">
+
+                <label for="company1Address"><b>Company Address</b></label>
+                <input type="text" id="company1Address" name="company1Address" placeholder="Enter Company Address">
+
+                <label for="company1Duration"><b>Working Experience (in months)</b></label>
+                <input type="number" id="company1Duration" name="company1Duration" placeholder="Enter Months Worked">
+
+                <label for="company1ContactName"><b>Contact Person Name</b></label>
+                <input type="text" id="company1ContactName" name="company1ContactName" placeholder="Enter Contact Person Name">
+
+                <label for="company1Designation"><b>Contact Person Designation</b></label>
+                <input type="text" id="company1Designation" name="company1Designation" placeholder="Enter Designation">
+
+                <label for="company1Phone"><b>Contact Phone</b></label>
+                <input type="tel" id="company1Phone" name="company1Phone" placeholder="Enter Phone Number">
+
+                <label for="company1Email"><b>Contact Email</b></label>
+                <input type="email" id="company1Email" name="company1Email" placeholder="Enter Email ID">
+            </fieldset>
+
+            <!-- Company 2 -->
+            <fieldset style="margin-top: 20px;">
+                <legend><b>Company 2</b></legend>
+
+                <label for="company2Name"><b>Company Name</b></label>
+                <input type="text" id="company2Name" name="company2Name" placeholder="Enter Company Name">
+
+                <label for="company2Address"><b>Company Address</b></label>
+                <input type="text" id="company2Address" name="company2Address" placeholder="Enter Company Address">
+
+                <label for="company2Duration"><b>Working Experience (in months)</b></label>
+                <input type="number" id="company2Duration" name="company2Duration" placeholder="Enter Months Worked">
+
+                <label for="company2ContactName"><b>Contact Person Name</b></label>
+                <input type="text" id="company2ContactName" name="company2ContactName" placeholder="Enter Contact Person Name">
+
+                <label for="company2Designation"><b>Contact Person Designation</b></label>
+                <input type="text" id="company2Designation" name="company2Designation" placeholder="Enter Designation">
+
+                <label for="company2Phone"><b>Contact Phone</b></label>
+                <input type="tel" id="company2Phone" name="company2Phone" placeholder="Enter Phone Number">
+
+                <label for="company2Email"><b>Contact Email</b></label>
+                <input type="email" id="company2Email" name="company2Email" placeholder="Enter Email ID">
+            </fieldset>
+        </div>
+
+        <hr>
+        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+        <button type="submit" class="registerbtn">Register</button>
+    </div>
+
+    <div class="container signin">
+        <p>Already have an account? <a href="/Index">Sign in</a>.</p>
+    </div>
+</form>
+<script>
+       function togglePanField(show) {
+      document.getElementById("panCardDiv").style.display = show ? "block" : "none";
+    }
+
+    function togglePassportField(show) {
+      document.getElementById("passportDiv").style.display = show ? "block" : "none";
+    }
+    function togglePanField(show) {
+      const panDiv = document.getElementById("panCardDiv");
+      panDiv.style.display = show ? "block" : "none";
+    }
+        function togglePanField(show) {
+      document.getElementById("panCardDiv").style.display = show ? "block" : "none";
+    }
+
+    function togglePassportField(show) {
+      document.getElementById("passportDiv").style.display = show ? "block" : "none";
+    }
+
+       function toggleExperience(hasExp) {
+      document.getElementById("experienceSection").style.display = hasExp ? "block" : "none";
+    }
+</script>

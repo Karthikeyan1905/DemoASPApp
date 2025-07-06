@@ -1,0 +1,18 @@
+﻿@page
+@model DemoASPApp.Pages.UserDataModel
+
+@{
+    Layout = "_MyLayout";
+}
+<ul>
+    <li><strong>User ID:</strong> @Model.user.userID</li>
+    <li><strong>Name:</strong> @Model.user.userName</li>
+    <li><strong>Father Name:</strong> @Model.user.fatherName</li>
+    <li><strong>Mother Name:</strong> @Model.user.motherName</li>
+    <li><strong>Aadhaar Number:</strong> @Model.user.AadhaarNumber</li>
+    <li><strong>Email:</strong> @Model.user.email</li>
+    <li><strong>Phone:</strong> @Model.user.phone</li>
+    <li><strong>PAN:</strong> @Model.user.panCardNo</li>
+    <li><strong>Passport:</strong> @Model.user.passportNo</li>
+  
+</ul>
