@@ -1,7 +1,32 @@
 ﻿@page
+@model DemoASPApp.Pages.UserAddressModel
 
-@model DemoASPApp.Pages.AddressModel
 @{
     Layout = "_MyLayout";
 }
-<h1>Address details</h1>
+
+<h2>User Address Details</h2>
+
+@if (Model.Addresses != null && Model.Addresses.Any())
+{
+    <ul>
+        @foreach (var address in Model.Addresses)
+        {
+            <li>
+                <strong>Address Type:</strong> @address.addressType<br />
+                <strong>Door No:</strong> @address.permDoorNo<br />
+                <strong>Street:</strong> @address.street<br />
+                <strong>Town:</strong> @address.town<br />
+                <strong>District:</strong> @address.district<br />
+                <strong>State:</strong> @address.state<br />
+                <strong>Country:</strong> @address.country<br />
+                <strong>Pincode:</strong> @address.pincode
+            </li>
+            
+        }
+    </ul>
+}
+else
+{
+    <p>No address information available for this user.</p>
+}

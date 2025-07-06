@@ -15,16 +15,17 @@ namespace DemoASPApp.Pages
             
 
              user = Common.users.FirstOrDefault(u => u.userID.ToString().Equals(id));
-            //foreach(UserInfo currentuser  in Common.users)
-            //{
-            //    if(currentuser.userID.ToString() == id)
-            //    {
-            //        user = currentuser;
-            //        break;
-
-            //    }
-            //}
+            
             
         }
     }
 }
+//foreach(UserInfo currentuser  in Common.users)
+//{
+//    if(currentuser.userID.ToString() == id)
+//    {
+//        user = currentuser;
+//        break;
+
+//    }
+//}
