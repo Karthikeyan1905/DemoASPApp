@@ -1,16 +1,16 @@
 ﻿@page
 @model DemoASPApp.Pages.UserAddressModel
-
+@using UserManagement.User;
 @{
     Layout = "_MyLayout";
 }
 
 <h2>User Address Details</h2>
 
-@if (Model.Addresses != null && Model.Addresses.Any())
+@if (Model.user != null && Model.user.addresses != null)
 {
     <ul>
-        @foreach (var address in Model.Addresses)
+        @foreach (Address address in Model.user.addresses)
         {
             <li>
                 <strong>Address Type:</strong> @address.addressType<br />
@@ -22,7 +22,6 @@
                 <strong>Country:</strong> @address.country<br />
                 <strong>Pincode:</strong> @address.pincode
             </li>
-            
         }
     </ul>
 }

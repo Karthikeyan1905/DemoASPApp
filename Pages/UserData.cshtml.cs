@@ -12,10 +12,7 @@ namespace DemoASPApp.Pages
         public void OnGet()
         {
             string id = Request.Query["id"];
-            
-
-             user = Common.users.FirstOrDefault(u => u.userID.ToString().Equals(id));
-            
+            user = Common.users.FirstOrDefault(u => u.userID.ToString().Equals(id));
             
         }
     }

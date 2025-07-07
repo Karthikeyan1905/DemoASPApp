@@ -1,6 +1,6 @@
 ﻿@page
 @model DemoASPApp.Pages.UserDataModel
-
+@using UserManagement.User;
 @{
     Layout = "_MyLayout";
 }
@@ -11,7 +11,14 @@
     <li><strong>Mother Name:</strong> @Model.user.motherName</li>
     <li><strong>Aadhaar Number:</strong> @Model.user.AadhaarNumber</li>
     <li><strong>Email:</strong> @Model.user.email</li>
-    <li><strong>Phone:</strong> @Model.user.phone</li>
+    @if (@Model.user.phone!=null)
+    {
+        @foreach (Phone phone in @Model.user.phone)
+        {
+            <li><strong>@phone.phoneType  Phone:</strong> @phone.phoneNumber</li>
+        }
+    }
+   
     <li><strong>PAN:</strong> @Model.user.panCardNo</li>
     <li><strong>Passport:</strong> @Model.user.passportNo</li>
   
