@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model DemoASPApp.Pages.UserAddressModel
 @using UserManagement.User;
 @{
@@ -7,7 +7,7 @@
 
 <h2>User Address Details</h2>
 
-@if (Model.user != null && Model.user.addresses != null)
+@if (Model.user != null && Model.user.addresses != null && Model.user.addresses.Count > 0)
 {
     <ul>
         @foreach (Address address in Model.user.addresses)
