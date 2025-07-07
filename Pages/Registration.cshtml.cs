@@ -11,9 +11,7 @@ namespace DemoASPApp.Pages
         public void OnGet()
         {
 
-
         }
-
         public ActionResult OnPost(UserInfo user)
         {
 
@@ -23,10 +21,10 @@ namespace DemoASPApp.Pages
             if (user != null)
             {
                 user.phone = GetPhoneFromCollection();
-               
+                user.addresses = GetAddressesFromCollection();
             }
             Common.users.Add(user);
-            return RedirectToPage("Index");
+            return RedirectToPage("Index", new { id = user.userID });
         }
 
 
@@ -44,11 +42,43 @@ namespace DemoASPApp.Pages
                 long phone = long.TryParse(form[("phoneNumber_"+i.ToString())], out var parsedPhone) ? parsedPhone : 0;
                
                 phones.Add(new Phone() { phoneNumber = phone, phoneType = ("Phone" + i.ToString()).ToString() });
-                
+
             }
             return phones;
 
         }
+        private List<Address> GetAddressesFromCollection()
+        {
+            var form = Request.Form;
+            List<Address> addresses = new List<Address>();
 
+            addresses.Add(new Address
+            {
+                addressType = "Permanent",
+                permDoorNo = form["permDoorNo"],
+                street = form["permStreet"],
+                town = form["permCity"],
+                district = form["permDistrict"],
+                state = form["permState"],
+                country = form["permCountry"],
+                pincode = long.TryParse(form["permPincode"], out var permPin) ? permPin : 0
+            });
+
+            
+            addresses.Add(new Address
+            {
+                addressType = "Current",
+                permDoorNo = form["currDoorNo"],
+                street = form["currStreet"],
+                town = form["currCity"],
+                district = form["currDistrict"],
+                state = form["currState"],
+                country = form["currCountry"],
+                pincode = long.TryParse(form["currPincode"], out var currPin) ? currPin : 0
+            });
+
+            return addresses;
+        }
     }
+
 }

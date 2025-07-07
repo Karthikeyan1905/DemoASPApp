@@ -1,3 +1,4 @@
+
 using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,7 +14,7 @@ namespace DemoASPApp.Pages
         {
             string id = Request.Query["id"];
             user = Common.users.FirstOrDefault(u => u.userID.ToString().Equals(id));
-            
+
         }
     }
 }
