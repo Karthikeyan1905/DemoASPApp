@@ -22,7 +22,11 @@
                 <strong>Country:</strong> @address.country<br />
                 <strong>Pincode:</strong> @address.pincode
             </li>
+           
         }
+        <li class="nav-item">
+            <a class="btn btn-primary" href="/UserData?id=@Model.user.userID">User Info</a>
+        </li>
     </ul>
 }
 else

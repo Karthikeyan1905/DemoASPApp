@@ -1,6 +1,32 @@
 ﻿@page
-@model DemoASPApp.Pages.EducationModel
+@model DemoASPApp.Pages.UserEducationModel
+@using UserManagement.User;
 @{
     Layout = "_MyLayout";
 }
-<h1>Education</h1>
+
+<h2>User Education Details</h2>
+
+@if (Model.user != null && Model.user.educations != null && Model.user.educations.Count > 0)
+{
+    <ul>
+        @foreach (Education edu in Model.user.educations)
+        {
+            <li>
+                <strong>Institute Name:</strong> @edu.instituteName<br />
+                <strong>Institute Address:</strong> @edu.instituteAddress<br />
+                <strong>Board:</strong> @edu.board<br />
+                <strong>Course Name:</strong> @edu.courseName<br />
+                <strong>Percentage:</strong> @edu.percentage<br />
+                <strong>Start Year:</strong> @edu.startYear
+            </li>
+        }
+        <li class="nav-item">
+            <a class="btn btn-primary" href="/UserData?id=@Model.user.userID">User Info</a>
+        </li>
+    </ul>
+}
+else
+{
+    <p>No education information available for this user.</p>
+}

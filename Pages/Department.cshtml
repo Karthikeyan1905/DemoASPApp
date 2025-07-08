@@ -3,4 +3,17 @@
 @{
     Layout = "_MyLayout";
 }
+
 <h1>Department</h1>
+
+@if (Model.user != null )
+{
+    <ul>
+        <li><strong>Department Name:</strong> </li>
+        <li><strong>Short Name:</strong></li>
+    </ul>
+}
+else
+{
+    <p>No department information available for this user.</p>
+}

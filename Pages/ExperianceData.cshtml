@@ -1,6 +1,33 @@
 ﻿@page
-@model DemoASPApp.Pages.ExperianceDataModel
+@model DemoASPApp.Pages.UserExperienceModel
+@using UserManagement.User;
 @{
     Layout = "_MyLayout";
 }
-<h1>Experiance</h1>
+
+<h2>User Experience Details</h2>
+
+@if (Model.user != null && Model.user.Experiance != null && Model.user.Experiance.Count > 0)
+{
+    <ul>
+        @foreach (Company company in Model.user.Experiance)
+        {
+            <li>
+                <strong>Company Name:</strong> @company.CompanyName<br />
+                <strong>Company Address:</strong> @company.CompanyAddress<br />
+                <strong>Experience (Months):</strong> @company.WorkingExperienceInMonths<br />
+                <strong>Contact Person:</strong> @company.ContactPersonName<br />
+                <strong>Designation:</strong> @company.ContactPersonDesignation<br />
+                <strong>Phone:</strong> @company.ContactPersonPhone<br />
+                <strong>Email:</strong> @company.ContactPersonEmail
+            </li>
+        }
+        <li class="nav-item">
+            <a class="btn btn-primary" href="/UserData?id=@Model.user.userID">User Info</a>
+        </li>
+    </ul>
+}
+else
+{
+    <p>No experience information available for this user.</p>
+}

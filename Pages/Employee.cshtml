@@ -3,4 +3,15 @@
 @{
     Layout = "_MyLayout";
 }
+
 <h1>Employee</h1>
+
+@if (Model.user != null)
+{
+    <p><strong>User ID:</strong> @Model.user.userID</p>
+    <p><strong>User Name:</strong> @Model.user.userName</p>
+}
+else
+{
+    <p>User not found.</p>
+}

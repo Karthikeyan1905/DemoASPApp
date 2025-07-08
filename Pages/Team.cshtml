@@ -3,4 +3,15 @@
 @{
     Layout = "_MyLayout";
 }
+
 <h1>Team</h1>
+
+@if (Model.user != null )
+{
+    <p><strong>User Name:</strong> </p>
+    <p><strong>Team:</strong></p>
+}
+else
+{
+    <p>No team information available for this user.</p>
+}

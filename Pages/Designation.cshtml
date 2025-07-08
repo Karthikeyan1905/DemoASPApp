@@ -3,4 +3,15 @@
 @{
     Layout = "_MyLayout";
 }
+
 <h1>Designation</h1>
+
+@if (Model.user != null )
+{
+    <p><strong>User Name:</strong> </p>
+    <p><strong>Designation:</strong></p>
+}
+else
+{
+    <p>No designation information available for this user.</p>
+}

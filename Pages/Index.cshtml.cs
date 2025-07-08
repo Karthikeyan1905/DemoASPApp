@@ -10,6 +10,7 @@ namespace DemoASPApp.Pages
         {
             public void OnGet()
             {
+            Common.LoadRegisterUsers();
             }
 
         public IActionResult OnPost(string uname, string psw)
