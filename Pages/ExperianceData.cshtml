@@ -7,10 +7,10 @@
 
 <h2>User Experience Details</h2>
 
-@if (Model.user != null && Model.user.Experiance != null && Model.user.Experiance.Count > 0)
+@if (Model.user != null && Model.user.experiance != null && Model.user.experiance.Count > 0)
 {
     <ul>
-        @foreach (Company company in Model.user.Experiance)
+        @foreach (Company company in Model.user.experiance)
         {
             <li>
                 <strong>Company Name:</strong> @company.CompanyName<br />

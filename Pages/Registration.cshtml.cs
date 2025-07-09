@@ -27,7 +27,7 @@ namespace DemoASPApp.Pages
             {
                 user.phone = GetPhoneFromCollection();
                 user.addresses = GetAddressesFromCollection();
-                user.Experiance = GetExperienceFromCollection();
+                user.experiance = GetExperienceFromCollection();
                 user.educations = GetEducationFromCollection();
             }
 
