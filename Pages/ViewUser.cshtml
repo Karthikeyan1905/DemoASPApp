@@ -17,6 +17,7 @@
             <th>Father Name</th>
             <th>Aadhar Number</th>
             <th>Action</th>
+           
         </tr>
     </thead>
     <tbody>
@@ -28,10 +29,11 @@
                 <td>@user.fatherName</td>
                 <td>@user.AadhaarNumber</td>
                 <td>
-                    <form method="post" asp-page-handler="View">
+                    
                         <input type="hidden" name="userID" value="@user.userID" />
-                        <button type="submit"><a href="/UserData?id=@user.userID" >View</a></button>
-                    </form>
+                        <a href="/UserData?id=@user.userID" >View</a>
+                    <a href="/UsertoEmployee?id=@user.userID">Register as Employee</a>
+                   
                 </td>
             </tr>
         }

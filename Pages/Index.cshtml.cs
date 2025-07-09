@@ -1,14 +1,17 @@
+﻿using DemoASPApp.model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserManagement.Department;
 using UserManagement.User;
-using DemoASPApp.model;
 
 namespace DemoASPApp.Pages
 {
-        public class LoginModel : PageModel
+    
+    public class LoginModel : PageModel
         {
-            public void OnGet()
+        public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
+        public void OnGet()
             {
             Common.LoadRegisterUsers();
             }
@@ -17,7 +20,16 @@ namespace DemoASPApp.Pages
         {
             if (!string.IsNullOrEmpty(uname))
             {
-                var user = Common.users.FirstOrDefault(u => u.userName == uname );
+                UserInfo user = null;
+                if (!isEmployee)
+                {
+                    user = Common.users.FirstOrDefault(u => u.userName == uname);
+                }
+                else
+                {
+                    if(Common.employees!= null &&  Common.employees.Count > 0)  
+                    user = Common.employees.FirstOrDefault(u => u.user.userName == uname).user;
+                }
                 if (user != null)
                 {
                     return RedirectToPage("Index1");
@@ -28,8 +40,10 @@ namespace DemoASPApp.Pages
                     return Page();
                 }
             }
-
             ViewData["EMsg"] = "Username is required.";
+
+            
+
             return Page();
         }
     }

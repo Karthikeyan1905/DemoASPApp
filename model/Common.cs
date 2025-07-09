@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using UserManagement.Department;
 using UserManagement.User;
 
 namespace DemoASPApp.model
@@ -6,7 +7,7 @@ namespace DemoASPApp.model
     public class Common
     {
         public static List<UserInfo> users = new List<UserInfo>();
-
+        public static List<Employee> employees { get; set; } = new List<Employee>();
         public static List<UserInfo> RegistedUsers
         {
 

@@ -1,0 +1,28 @@
+﻿@page
+@model DemoASPApp.Pages.UsertoEmployeeModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>Promote User to Employee</h2>
+
+@if (Model.user != null)
+{
+    <p><strong>User ID:</strong> @Model.user.userID</p>
+    <p><strong>Name:</strong> @Model.user.userName</p>
+
+    <form method="post">
+        <label>Department:</label>
+        <input type="text" name="department" required />
+
+        <label>Designation:</label>
+        <input type="text" name="designation" required />
+
+        <input type="hidden" name="userID" value="@Model.user.userID" />
+        <button type="submit">Promote to Employee</button>
+    </form>
+}
+else
+{
+    <p style="color:red">User not found.</p>
+}
