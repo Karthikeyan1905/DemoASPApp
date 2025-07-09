@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model DemoASPApp.Pages.DesignationModel
 @{
     Layout = "_MyLayout";
@@ -6,10 +6,10 @@
 
 <h1>Designation</h1>
 
-@if (Model.user != null )
+@if (Model.Employee != null)
 {
-    <p><strong>User Name:</strong> </p>
-    <p><strong>Designation:</strong></p>
+    <p><strong>User Name:</strong> @Model.Employee.user.userName</p>
+    <p><strong>Designation:</strong> @Model.Employee.Designation.Name</p>
 }
 else
 {
