@@ -5,7 +5,6 @@ using System.Text.Json;
 using UserManagement.User;
 
 
-
 namespace DemoASPApp.Pages
 {
     public class InfoModel : PageModel
@@ -35,16 +34,7 @@ namespace DemoASPApp.Pages
             Common.users.Add(user);
             Common.SaveToFile();
 
-            //string jsonString = JsonSerializer.Serialize(Common.users, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true
-            //});
-
-            //string filePath = Path.Combine(Environment.CurrentDirectory, "Users.json");
-            //System.IO.File.WriteAllText("Users.json", jsonString);
-            //string json = System.IO.File.ReadAllText(filePath);
-            //var users = JsonSerializer.Deserialize<List<UserInfo>>(json);
-            //Common.users = users ?? new List<UserInfo>();
+            
 
             return RedirectToPage("Index", new { id = user.userID });
         }
@@ -57,7 +47,7 @@ namespace DemoASPApp.Pages
             var form = Request.Form;
             List<Education> educations = new List<Education>();
 
-            // 10th
+            
             educations.Add(new Education
             {
                 instituteName = form["tenthCollege"],
@@ -67,7 +57,7 @@ namespace DemoASPApp.Pages
                 startYear = 0
             });
 
-            // 12th
+            
             educations.Add(new Education
             {
                 instituteName = form["twelfthCollege"],
@@ -77,7 +67,7 @@ namespace DemoASPApp.Pages
                 startYear = 0
             });
 
-            // Bachelor's
+           
             educations.Add(new Education
             {
                 instituteName = form["bachelorCollege"],
@@ -87,7 +77,7 @@ namespace DemoASPApp.Pages
                 startYear = 0
             });
 
-            // Master's
+            
             educations.Add(new Education
             {
                 instituteName = form["masterCollege"],
@@ -175,3 +165,13 @@ namespace DemoASPApp.Pages
     }
 
 }
+//string jsonString = JsonSerializer.Serialize(Common.users, new JsonSerializerOptions
+//{
+//    WriteIndented = true
+//});
+
+//string filePath = Path.Combine(Environment.CurrentDirectory, "Users.json");
+//System.IO.File.WriteAllText("Users.json", jsonString);
+//string json = System.IO.File.ReadAllText(filePath);
+//var users = JsonSerializer.Deserialize<List<UserInfo>>(json);
+//Common.users = users ?? new List<UserInfo>();

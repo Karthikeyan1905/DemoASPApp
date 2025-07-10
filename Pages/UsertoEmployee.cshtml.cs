@@ -36,7 +36,7 @@ namespace DemoASPApp.Pages
             };
 
             Common.employees.Add(employee);
-
+            Common.SaveToFile();
             return RedirectToPage("Index", new { id = employee.EmployeeID });
         }
     }

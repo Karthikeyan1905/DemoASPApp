@@ -9,12 +9,17 @@ namespace DemoASPApp.Pages
 {
     public class DepartmentModel : PageModel
     {
-        
+
         public Employee Employee { get; set; }
-        public UserInfo user => Employee?.user;
+        [BindProperty]
+        public UserInfo user { get; set; }
+        //public UserInfo user { get { if (Employee != null) { return Employee.user; } return null; } }
+       
+
         public void OnGet(int id)
         {
             Employee = Common.employees.FirstOrDefault(e => e.UserID == id);
+            user = Common.users.FirstOrDefault(u => u.userID == id);
         }
     }
 }

@@ -34,19 +34,30 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-2 sidebar">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="/UserData?id=@Model.user.userID">User Info</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Address?id=@Model.user.userID">Address</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/ExperianceData?id=@Model.user.userID">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Education?id=@Model.user.userID">Education</a><li>
-                    <li class="nav-item"><a class="nav-link" href="/Employee?id=@Model.user.userID">Employee</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Department?id=@Model.user.userID">Department</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Designation?id=@Model.user.userID">Designation</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Team?id=@Model.user.userID">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/TeamUser?id=@Model.user.userID">Team Users</a></li>
-                </ul>
-            </nav>
+            @{
+                var userId = "#";
+                @if (Model.user != null)
+
+                {
+
+                     userId = Model.user.userID.ToString();
+                }
+
+                <nav class="col-md-2 sidebar">
+                    <ul class="nav flex-column">
+
+                        <li class="nav-item"><a class="nav-link" href="/UserData?id=@userId">User Info</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Address?id=@userId">Address</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ExperianceData?id=@userId">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Education?id=@userId">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Employee?id=@userId">Employee</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Department?id=@userId">Department</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Designation?id=@userId">Designation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Team?id=@userId">Team</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/TeamUser?id=@userId">Team Users</a></li>
+                    </ul>
+                </nav>
+            }
 
             <!-- Main content area -->
             <main class="col-md-10 py-4">
