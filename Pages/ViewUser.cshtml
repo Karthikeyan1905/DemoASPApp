@@ -32,10 +32,22 @@
                     
                         <input type="hidden" name="userID" value="@user.userID" />
                         <a href="/UserData?id=@user.userID" >View</a>
-                    <a href="/UsertoEmployee?id=@user.userID">Register as Employee</a>
+                    @{
+                        bool isPromoted = Common.employees != null && Common.employees.Any(e => e.UserID == user.userID);
+                    }
+
+                    @if (!isPromoted)
+                    {
+                        <a href="/UsertoEmployee?id=@user.userID">Register as Employee</a>
+                    }
+                    else
+                    {
+                        <span style="color:gray;">Already an Employee</span>
+                    }
                    
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

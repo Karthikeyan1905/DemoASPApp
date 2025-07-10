@@ -6,12 +6,12 @@
 
 <h1>Designation</h1>
 
-@if (Model.Employee != null)
+@if (Model.Employee == null)
 {
-    <p><strong>User Name:</strong> @Model.Employee.user.userName</p>
-    <p><strong>Designation:</strong> @Model.Employee.Designation.Name</p>
+    <p style="color:red;">This user is not yet registered as an employee.</p>
 }
 else
 {
-    <p>No designation information available for this user.</p>
+    <p><strong>Designation:</strong> @Model.Employee.Designation?.Name</p>
+    <p><strong>Short Name:</strong> @Model.Employee.Designation?.ShortName</p>
 }

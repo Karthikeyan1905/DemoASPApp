@@ -14,12 +14,15 @@ namespace DemoASPApp.Pages
         [BindProperty]
         public UserInfo user { get; set; }
         //public UserInfo user { get { if (Employee != null) { return Employee.user; } return null; } }
-       
+
 
         public void OnGet(int id)
         {
-            Employee = Common.employees.FirstOrDefault(e => e.UserID == id);
-            user = Common.users.FirstOrDefault(u => u.userID == id);
+            if (Common.employees != null)
+                Employee = Common.employees.FirstOrDefault(e => e.UserID == id);
+
+            if (Common.users != null)
+                user = Common.users.FirstOrDefault(u => u.userID == id);
         }
     }
 }

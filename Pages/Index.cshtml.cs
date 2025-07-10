@@ -14,37 +14,37 @@ namespace DemoASPApp.Pages
         public void OnGet()
             {
             Common.LoadRegisterUsers();
-            }
+            Common.LoadRegisteredEmployees();
+        }
 
         public IActionResult OnPost(string uname, string psw)
         {
             if (!string.IsNullOrEmpty(uname))
             {
                 UserInfo user = null;
+
                 if (!isEmployee)
                 {
                     user = Common.users.FirstOrDefault(u => u.userName == uname);
                 }
                 else
                 {
-                    if(Common.employees!= null &&  Common.employees.Count > 0)  
-                    user = Common.employees.FirstOrDefault(u => u.user.userName == uname).user;
+                    var emp = Common.employees?.FirstOrDefault(e => e.user.userName == uname);
+                    user = emp?.user;
                 }
+
                 if (user != null)
                 {
-                    return RedirectToPage("Index1");
+                    return RedirectToPage("Index1", new { un = user.userName });
                 }
-                else
-                {
-                    ViewData["EMsg"] = "Username not found. Please register first.";
-                    return Page();
-                }
+                    
+                ViewData["EMsg"] = "Username not found. Please register first.";
+                return Page();
             }
+
             ViewData["EMsg"] = "Username is required.";
-
-            
-
             return Page();
         }
+
     }
 }

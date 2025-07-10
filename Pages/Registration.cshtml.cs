@@ -39,9 +39,6 @@ namespace DemoASPApp.Pages
             return RedirectToPage("Index", new { id = user.userID });
         }
 
-        
-
-
         private List<Education> GetEducationFromCollection()
         {
             var form = Request.Form;

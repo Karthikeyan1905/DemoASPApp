@@ -20,7 +20,7 @@ namespace DemoASPApp.model
             get { if (RegistedUsers == null || RegistedUsers.Count == 0) return false; return true; }
         }
 
-        public static  string RegistedUsersAsJson
+        public static string RegistedUsersAsJson
         {
             get
             {
@@ -64,7 +64,7 @@ namespace DemoASPApp.model
         {
 
             return System.IO.File.ReadAllText(filePath);
-          
+
 
         }
         public static bool LoadRegisterUsers()
@@ -72,6 +72,89 @@ namespace DemoASPApp.model
             users = GetJsonToRegistedUsers(FetchFromFile());
             return true;
 
+        }
+
+        public static List<Employee> RegisteredEmployees
+        {
+            get
+            {
+                if (employees != null && employees.Count > 0)
+                    return employees;
+                return null;
+            }
+        }
+
+
+        public static bool hasRegisteredEmployees
+        {
+            get
+            {
+                if (RegisteredEmployees == null || RegisteredEmployees.Count == 0)
+                    return false;
+                return true;
+            }
+        }
+
+
+        public static string RegisteredEmployeesAsJson
+        {
+            get
+            {
+                if (hasRegisteredEmployees)
+                    return JsonSerializer.Serialize(RegisteredEmployees, new JsonSerializerOptions
+                    {
+                        WriteIndented = true
+                    });
+                return "";
+            }
+        }
+
+
+        public static List<Employee> GetJsonToRegisteredEmployees(string jsonInput)
+        {
+            if (!string.IsNullOrEmpty(jsonInput))
+                return JsonSerializer.Deserialize<List<Employee>>(jsonInput);
+            return null;
+        }
+
+
+        public static string employeeFilePath
+        {
+            get
+            {
+                return Path.Combine(Environment.CurrentDirectory, "Employees.json");
+            }
+        }
+
+
+        public static bool SaveEmployeesToFile()
+        {
+            if (hasRegisteredEmployees)
+            {
+                System.IO.File.WriteAllText(employeeFilePath, RegisteredEmployeesAsJson);
+                return true;
+            }
+            return false;
+        }
+
+
+        public static bool LoadRegisteredEmployees()
+        {
+            string json = FetchEmployeesFromFile();
+            employees = string.IsNullOrEmpty(json)
+                ? new List<Employee>()
+                : GetJsonToRegisteredEmployees(json);
+            return true;
+        }
+
+        public static string FetchEmployeesFromFile()
+        {
+            if (File.Exists(employeeFilePath))
+            {
+                return System.IO.File.ReadAllText(employeeFilePath);
+            }
+
+            return "";
         }
     }
 }

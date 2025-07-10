@@ -6,14 +6,12 @@
 
 <h1>Department</h1>
 
-@if (Model.Employee != null)
+@if (Model.Employee == null)
 {
-    <ul>
-        <li><strong>Department Name:</strong> @Model.Employee.Department.Name</li>
-        <li><strong>Short Name:</strong> @Model.Employee.Department.ShortName</li>
-    </ul>
+    <p style="color:red;">Employee not found for the given user.</p>
 }
 else
 {
-    <p>No department information available for this user.</p>
+    <p><strong>Department:</strong> @Model.Employee.Department.Name</p>
+    <p><strong>Designation:</strong> @Model.Employee.Designation.Name</p>
 }

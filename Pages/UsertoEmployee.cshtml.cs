@@ -23,6 +23,9 @@ namespace DemoASPApp.Pages
                 return Page();
             }
 
+            if (Common.employees == null)
+                Common.employees = new List<Employee>();
+
             var dept = new Department { Name = department, ShortName = department };
             var desig = new Designation { Name = designation, ShortName = designation };
 
@@ -36,8 +39,10 @@ namespace DemoASPApp.Pages
             };
 
             Common.employees.Add(employee);
+            Common.SaveEmployeesToFile();
             Common.SaveToFile();
             return RedirectToPage("Index", new { id = employee.EmployeeID });
         }
+
     }
 }
