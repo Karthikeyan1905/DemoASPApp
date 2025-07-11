@@ -10,6 +10,12 @@
         <h1>Register</h1>
         <p>Please fill this form to create an account in my application.</p>
         <hr>
+        <label for="loginUsername"><b>Login Username</b></label>
+        <input type="text" placeholder="Enter Username" name="loginUsername" id="loginUsername" required />
+        @if (ViewData["EMsg"] != null)
+        {
+            <div style="color:red; margin-top:10px;">@ViewData["EMsg"]</div>
+        }
        
         <label for="psw"><b>Name</b></label>
         <input type="text" placeholder="Enter Name" name="userName" id="userName" required>

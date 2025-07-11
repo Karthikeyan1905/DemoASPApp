@@ -1,5 +1,6 @@
 [
   {
+    "loginCredential": null,
     "userID": 1,
     "email": "sncakjbh",
     "userName": "karthi",
@@ -22,11 +23,6 @@
         "phoneType": "Phone2"
       }
     ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null,
     "educations": null,
     "addresses": [
       {
@@ -51,9 +47,15 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null
+    "experiance": null,
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
   },
   {
+    "loginCredential": null,
     "userID": 2,
     "email": "sncakjbh",
     "userName": "karthi",
@@ -76,11 +78,6 @@
         "phoneType": "Phone2"
       }
     ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null,
     "educations": null,
     "addresses": [
       {
@@ -105,9 +102,15 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null
+    "experiance": null,
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
   },
   {
+    "loginCredential": null,
     "userID": 3,
     "email": "sncakjbh",
     "userName": "sathish",
@@ -130,11 +133,6 @@
         "phoneType": "Phone2"
       }
     ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null,
     "educations": null,
     "addresses": [
       {
@@ -159,9 +157,15 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null
+    "experiance": null,
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
   },
   {
+    "loginCredential": null,
     "userID": 4,
     "email": "sncakjbh",
     "userName": "sathish",
@@ -184,11 +188,6 @@
         "phoneType": "Phone2"
       }
     ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null,
     "educations": [
       {
         "instituteName": "sdqwfv",
@@ -246,9 +245,15 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null
+    "experiance": null,
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
   },
   {
+    "loginCredential": null,
     "userID": 5,
     "email": "sncakjbh",
     "userName": "Karthikeyan S",
@@ -271,11 +276,6 @@
         "phoneType": "Phone2"
       }
     ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null,
     "educations": [
       {
         "instituteName": "sdqwfv",
@@ -352,6 +352,439 @@
         "ContactPersonPhone": "06415541456",
         "ContactPersonEmail": "21it19@act.edu.in"
       }
-    ]
+    ],
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
+  },
+  {
+    "loginCredential": null,
+    "userID": 6,
+    "email": "sncakjbh",
+    "userName": "Karthikeyan S",
+    "fatherName": "qed",
+    "motherName": "we",
+    "AadhaarNumber": 874548745865,
+    "panCardNo": null,
+    "panCardNumber": null,
+    "HasPanCard": false,
+    "passportNo": null,
+    "passportNumber": null,
+    "HasPassport": false,
+    "phone": [
+      {
+        "phoneNumber": 87452154,
+        "phoneType": "Phone1"
+      },
+      {
+        "phoneNumber": 0,
+        "phoneType": "Phone2"
+      }
+    ],
+    "educations": [
+      {
+        "instituteName": "sdqwfv",
+        "instituteAddress": null,
+        "board": "wdvcqs",
+        "courseName": "10th Standard",
+        "percentage": 59,
+        "startYear": 0
+      },
+      {
+        "instituteName": "sxqa",
+        "instituteAddress": null,
+        "board": "qcvew",
+        "courseName": "12th Standard",
+        "percentage": 98,
+        "startYear": 0
+      },
+      {
+        "instituteName": "qdwv",
+        "instituteAddress": "qcvdw ",
+        "board": null,
+        "courseName": "sfd",
+        "percentage": 85,
+        "startYear": 0
+      },
+      {
+        "instituteName": "csa;lkmb n",
+        "instituteAddress": "nacskji",
+        "board": null,
+        "courseName": "jask c",
+        "percentage": 12,
+        "startYear": 0
+      }
+    ],
+    "addresses": [
+      {
+        "addressType": "Permanent",
+        "permDoorNo": "235",
+        "street": "wqdc",
+        "town": "dsqc",
+        "district": "qqwdw",
+        "state": " qdwwqd",
+        "country": " mcdjn",
+        "pincode": 613203
+      },
+      {
+        "addressType": "Current",
+        "permDoorNo": "3",
+        "street": "sac",
+        "town": "Thanjavur",
+        "district": "scad",
+        "state": "sac",
+        "country": "India",
+        "pincode": 451265
+      }
+    ],
+    "HasExperience": false,
+    "experiance": [
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      },
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      }
+    ],
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
+  },
+  {
+    "loginCredential": null,
+    "userID": 7,
+    "email": "sncakjbh",
+    "userName": "Karthikeyan S",
+    "fatherName": "qed",
+    "motherName": "we",
+    "AadhaarNumber": 874548745865,
+    "panCardNo": null,
+    "panCardNumber": null,
+    "HasPanCard": false,
+    "passportNo": null,
+    "passportNumber": null,
+    "HasPassport": false,
+    "phone": [
+      {
+        "phoneNumber": 87452154,
+        "phoneType": "Phone1"
+      },
+      {
+        "phoneNumber": 0,
+        "phoneType": "Phone2"
+      }
+    ],
+    "educations": [
+      {
+        "instituteName": "sdqwfv",
+        "instituteAddress": null,
+        "board": "wdvcqs",
+        "courseName": "10th Standard",
+        "percentage": 59,
+        "startYear": 0
+      },
+      {
+        "instituteName": "sxqa",
+        "instituteAddress": null,
+        "board": "qcvew",
+        "courseName": "12th Standard",
+        "percentage": 98,
+        "startYear": 0
+      },
+      {
+        "instituteName": "qdwv",
+        "instituteAddress": "qcvdw ",
+        "board": null,
+        "courseName": "sfd",
+        "percentage": 85,
+        "startYear": 0
+      },
+      {
+        "instituteName": "csa;lkmb n",
+        "instituteAddress": "nacskji",
+        "board": null,
+        "courseName": "jask c",
+        "percentage": 12,
+        "startYear": 0
+      }
+    ],
+    "addresses": [
+      {
+        "addressType": "Permanent",
+        "permDoorNo": "235",
+        "street": "wqdc",
+        "town": "dsqc",
+        "district": "qqwdw",
+        "state": " qdwwqd",
+        "country": " mcdjn",
+        "pincode": 613203
+      },
+      {
+        "addressType": "Current",
+        "permDoorNo": "3",
+        "street": "sac",
+        "town": "Thanjavur",
+        "district": "scad",
+        "state": "sac",
+        "country": "India",
+        "pincode": 451265
+      }
+    ],
+    "HasExperience": false,
+    "experiance": [
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      },
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      }
+    ],
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
+  },
+  {
+    "loginCredential": null,
+    "userID": 8,
+    "email": "sncakjbh",
+    "userName": "Karthikeyan S",
+    "fatherName": "qed",
+    "motherName": "we",
+    "AadhaarNumber": 874548745865,
+    "panCardNo": null,
+    "panCardNumber": null,
+    "HasPanCard": false,
+    "passportNo": null,
+    "passportNumber": null,
+    "HasPassport": false,
+    "phone": [
+      {
+        "phoneNumber": 87452154,
+        "phoneType": "Phone1"
+      },
+      {
+        "phoneNumber": 0,
+        "phoneType": "Phone2"
+      }
+    ],
+    "educations": [
+      {
+        "instituteName": "sdqwfv",
+        "instituteAddress": null,
+        "board": "wdvcqs",
+        "courseName": "10th Standard",
+        "percentage": 59,
+        "startYear": 0
+      },
+      {
+        "instituteName": "sxqa",
+        "instituteAddress": null,
+        "board": "qcvew",
+        "courseName": "12th Standard",
+        "percentage": 98,
+        "startYear": 0
+      },
+      {
+        "instituteName": "qdwv",
+        "instituteAddress": "qcvdw ",
+        "board": null,
+        "courseName": "sfd",
+        "percentage": 85,
+        "startYear": 0
+      },
+      {
+        "instituteName": "csa;lkmb n",
+        "instituteAddress": "nacskji",
+        "board": null,
+        "courseName": "jask c",
+        "percentage": 12,
+        "startYear": 0
+      }
+    ],
+    "addresses": [
+      {
+        "addressType": "Permanent",
+        "permDoorNo": "235",
+        "street": "wqdc",
+        "town": "dsqc",
+        "district": "qqwdw",
+        "state": " qdwwqd",
+        "country": " mcdjn",
+        "pincode": 613203
+      },
+      {
+        "addressType": "Current",
+        "permDoorNo": "3",
+        "street": "sac",
+        "town": "Thanjavur",
+        "district": "scad",
+        "state": "sac",
+        "country": "India",
+        "pincode": 451265
+      }
+    ],
+    "HasExperience": false,
+    "experiance": [
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      },
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      }
+    ],
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
+  },
+  {
+    "loginCredential": null,
+    "userID": 9,
+    "email": "sncakjbh",
+    "userName": "Karthikeyan S",
+    "fatherName": "qed",
+    "motherName": "we",
+    "AadhaarNumber": 874548745865,
+    "panCardNo": null,
+    "panCardNumber": null,
+    "HasPanCard": false,
+    "passportNo": null,
+    "passportNumber": null,
+    "HasPassport": false,
+    "phone": [
+      {
+        "phoneNumber": 87452154,
+        "phoneType": "Phone1"
+      },
+      {
+        "phoneNumber": 0,
+        "phoneType": "Phone2"
+      }
+    ],
+    "educations": [
+      {
+        "instituteName": "sdqwfv",
+        "instituteAddress": null,
+        "board": "wdvcqs",
+        "courseName": "10th Standard",
+        "percentage": 59,
+        "startYear": 0
+      },
+      {
+        "instituteName": "sxqa",
+        "instituteAddress": null,
+        "board": "qcvew",
+        "courseName": "12th Standard",
+        "percentage": 98,
+        "startYear": 0
+      },
+      {
+        "instituteName": "qdwv",
+        "instituteAddress": "qcvdw ",
+        "board": null,
+        "courseName": "sfd",
+        "percentage": 85,
+        "startYear": 0
+      },
+      {
+        "instituteName": "csa;lkmb n",
+        "instituteAddress": "nacskji",
+        "board": null,
+        "courseName": "jask c",
+        "percentage": 12,
+        "startYear": 0
+      }
+    ],
+    "addresses": [
+      {
+        "addressType": "Permanent",
+        "permDoorNo": "235",
+        "street": "wqdc",
+        "town": "dsqc",
+        "district": "qqwdw",
+        "state": " qdwwqd",
+        "country": " mcdjn",
+        "pincode": 613203
+      },
+      {
+        "addressType": "Current",
+        "permDoorNo": "3",
+        "street": "sac",
+        "town": "Thanjavur",
+        "district": "scad",
+        "state": "sac",
+        "country": "India",
+        "pincode": 451265
+      }
+    ],
+    "HasExperience": false,
+    "experiance": [
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      },
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      }
+    ],
+    "department": null,
+    "designation": null,
+    "employee": null,
+    "team": null,
+    "teamUser": null
   }
 ]

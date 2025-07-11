@@ -9,7 +9,6 @@ namespace DemoASPApp.Pages
 {
     public class InfoModel : PageModel
     {
-
         public void OnGet()
         {
 
@@ -18,7 +17,6 @@ namespace DemoASPApp.Pages
         public ActionResult OnPost(UserInfo user)
         {
 
-            
             user.userID = Common.users.Count > 0
         ? Common.users.Max(u => u.userID ?? 0) + 1
         : 1;
@@ -28,17 +26,14 @@ namespace DemoASPApp.Pages
                 user.addresses = GetAddressesFromCollection();
                 user.experiance = GetExperienceFromCollection();
                 user.educations = GetEducationFromCollection();
+                
             }
 
-            
             Common.users.Add(user);
             Common.SaveToFile();
-
-            
-
             return RedirectToPage("Index", new { id = user.userID });
         }
-
+        
         private List<Education> GetEducationFromCollection()
         {
             var form = Request.Form;

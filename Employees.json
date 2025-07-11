@@ -275,5 +275,80 @@
     "Status": null,
     "CreatedOn": "0001-01-01T00:00:00",
     "UpdatedOn": "0001-01-01T00:00:00"
+  },
+  {
+    "EmployeeID": 4,
+    "UserID": 3,
+    "Department": {
+      "Name": "it",
+      "ShortName": "it",
+      "Status": null,
+      "CreatedOn": "0001-01-01T00:00:00",
+      "UpdatedOn": "0001-01-01T00:00:00"
+    },
+    "Designation": {
+      "Name": "hr",
+      "ShortName": "hr",
+      "Status": null,
+      "CreatedOn": "0001-01-01T00:00:00",
+      "UpdatedOn": "0001-01-01T00:00:00"
+    },
+    "user": {
+      "userID": 3,
+      "email": "sncakjbh",
+      "userName": "sathish",
+      "fatherName": "james",
+      "motherName": " mnkjh",
+      "AadhaarNumber": 874548745865,
+      "panCardNo": null,
+      "panCardNumber": null,
+      "HasPanCard": false,
+      "passportNo": null,
+      "passportNumber": null,
+      "HasPassport": false,
+      "phone": [
+        {
+          "phoneNumber": 87452154,
+          "phoneType": "Phone1"
+        },
+        {
+          "phoneNumber": 0,
+          "phoneType": "Phone2"
+        }
+      ],
+      "department": null,
+      "designation": null,
+      "employee": null,
+      "team": null,
+      "teamUser": null,
+      "educations": null,
+      "addresses": [
+        {
+          "addressType": "Permanent",
+          "permDoorNo": "235",
+          "street": "wqdc",
+          "town": "dsqc",
+          "district": "qqwdw",
+          "state": " qdwwqd",
+          "country": " mcdjn",
+          "pincode": 613203
+        },
+        {
+          "addressType": "Current",
+          "permDoorNo": "3",
+          "street": "sac",
+          "town": "Thanjavur",
+          "district": "scad",
+          "state": "sac",
+          "country": "India",
+          "pincode": 451265
+        }
+      ],
+      "HasExperience": false,
+      "experiance": null
+    },
+    "Status": null,
+    "CreatedOn": "0001-01-01T00:00:00",
+    "UpdatedOn": "0001-01-01T00:00:00"
   }
 ]
