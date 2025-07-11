@@ -28,7 +28,7 @@ namespace DemoASPApp.Pages
                     foreach (var u in Common.users)
                     {
                         if (u.loginCredential != null &&
-                            u.loginCredential.loginUsername == uname)
+                            u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == "1234")
                         {
                             user = u;
                             break;
