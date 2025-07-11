@@ -7,12 +7,12 @@ using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
-    
+
     public class LoginModel : PageModel
-        {
+    {
         public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
         public void OnGet()
-            {
+        {
             Common.LoadRegisterUsers();
             Common.LoadRegisteredEmployees();
         }
