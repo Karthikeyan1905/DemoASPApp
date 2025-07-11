@@ -14,26 +14,47 @@ namespace DemoASPApp.Pages
 
             
         }
-        public ActionResult OnPost(UserInfo user)
+        public IActionResult OnPost(UserInfo user)
         {
+            var form = Request.Form;
+            string loginUsername = form["loginUsername"];
 
-            user.userID = Common.users.Count > 0
-        ? Common.users.Max(u => u.userID ?? 0) + 1
-        : 1;
-            if (user != null)
+            
+            foreach (var u in Common.users)
             {
-                user.phone = GetPhoneFromCollection();
-                user.addresses = GetAddressesFromCollection();
-                user.experiance = GetExperienceFromCollection();
-                user.educations = GetEducationFromCollection();
-                
+                if (u.loginCredential != null &&
+                    u.loginCredential.loginUsername == loginUsername)
+                {
+                    ViewData["EMsg"] = "Username already exists.";
+                    return Page();
+                }
             }
+
+            
+            user.userID = Common.users.Count > 0
+                ? Common.users.Max(u => u.userID ?? 0) + 1
+                : 1;
+
+            user.loginCredential = new LoginCredential
+            {
+                
+                loginUsername = loginUsername,
+                loginPassword = "1234",
+                
+            };
+
+            
+            user.phone = GetPhoneFromCollection();
+            user.addresses = GetAddressesFromCollection();
+            user.experiance = GetExperienceFromCollection();
+            user.educations = GetEducationFromCollection();
 
             Common.users.Add(user);
             Common.SaveToFile();
+
             return RedirectToPage("Index", new { id = user.userID });
         }
-        
+
         private List<Education> GetEducationFromCollection()
         {
             var form = Request.Form;

@@ -19,18 +19,19 @@ namespace DemoASPApp.Pages
 
         public IActionResult OnPost(string uname, string psw)
         {
-        if (!string.IsNullOrEmpty(uname))
+            if (!string.IsNullOrWhiteSpace(uname))
             {
-        UserInfo user = null;
+                UserInfo user = null;
 
                 if (!isEmployee)
                 {
                     foreach (var u in Common.users)
                     {
-                        if (u.loginCredential != null && u.loginCredential.loginUsername == uname)
+                        if (u.loginCredential != null &&
+                            u.loginCredential.loginUsername == uname)
                         {
                             user = u;
-                            break; 
+                            break;
                         }
                     }
                 }
@@ -40,29 +41,29 @@ namespace DemoASPApp.Pages
                     {
                         foreach (var e in Common.employees)
                         {
-                            if (e.user != null && e.user.loginCredential != null &&
+                            if (e.user != null &&
+                                e.user.loginCredential != null &&
                                 e.user.loginCredential.loginUsername == uname)
                             {
                                 user = e.user;
-                                break; 
+                                break;
                             }
                         }
                     }
                 }
 
                 if (user != null)
-        {
-            return RedirectToPage("Index1", new { un = user.userName });
+                {
+                    return RedirectToPage("Index1", new { un = user.userName });
+                }
+
+                ViewData["EMsg"] = "Username not found. Please register first.";
+                return Page();
+            }
+
+            ViewData["EMsg"] = "Username is required.";
+            return Page();
         }
-
-        ViewData["EMsg"] = "Username not found. Please register first.";
-        return Page();
-    }
-
-    ViewData["EMsg"] = "Username is required.";
-    return Page();
-}
-
 
     }
 }
