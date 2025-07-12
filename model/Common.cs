@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using UserManagement.Department;
+using UserManagement.History;
 using UserManagement.User;
 
 namespace DemoASPApp.model
@@ -8,6 +9,29 @@ namespace DemoASPApp.model
     {
         public static List<UserInfo> users = new List<UserInfo>();
         public static List<Employee> employees { get; set; } = new List<Employee>();
+        public static List<LoginHistory> loginRecords = new List<LoginHistory>();
+        public static string loginHistoryFile = "loginHistory.json";
+
+        public static void SaveLoginHistory(LoginHistory history)
+        {
+            loginRecords.Add(history);
+
+            var json = JsonSerializer.Serialize(loginRecords, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(loginHistoryFile, json);
+        }
+
+        public static void LoadLoginHistory()
+        {
+            if (File.Exists(loginHistoryFile))
+            {
+                string json = File.ReadAllText(loginHistoryFile);
+                loginRecords = JsonSerializer.Deserialize<List<LoginHistory>>(json) ?? new List<LoginHistory>();
+            }
+        }
         public static List<UserInfo> RegistedUsers
         {
 

@@ -15,6 +15,7 @@ namespace DemoASPApp.Pages
         {
             Common.LoadRegisterUsers();
             Common.LoadRegisteredEmployees();
+
         }
 
         public IActionResult OnPost(string uname, string psw)
@@ -28,7 +29,7 @@ namespace DemoASPApp.Pages
                     foreach (var u in Common.users)
                     {
                         if (u.loginCredential != null &&
-                            u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == "1234")
+                            u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
                         {
                             user = u;
                             break;
@@ -43,7 +44,7 @@ namespace DemoASPApp.Pages
                         {
                             if (e.user != null &&
                                 e.user.loginCredential != null &&
-                                e.user.loginCredential.loginUsername == uname)
+                                e.user.loginCredential.loginUsername == uname )
                             {
                                 user = e.user;
                                 break;
@@ -54,7 +55,8 @@ namespace DemoASPApp.Pages
 
                 if (user != null)
                 {
-                    return RedirectToPage("Index1", new { un = user.userName });
+
+                    return RedirectToPage("Index1", new { un = user.userName, isEmployee = isEmployee });
                 }
 
                 ViewData["EMsg"] = "Username not found. Please register first.";

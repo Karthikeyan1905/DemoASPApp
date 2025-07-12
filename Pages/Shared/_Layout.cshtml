@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using DemoASPApp.model
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -74,11 +75,22 @@
 </head>
 <body>
     <header>
+        @{
+            var userId = "#";
+            var isPromoted = false;
+
+            dynamic model = ViewData["UserModel"];
+            if (model != null && model.user != null)
+            {
+                userId = model.user.userID?.ToString() ?? "#";
+                isPromoted = Common.employees?.Any(e => e.UserID == model.user.userID) == true;
+            }
+        }
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">DemoASPApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -86,20 +98,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index1">Home</a>
                         </li>
-                        
+
+                        @if (isPromoted)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ViewUser">ViewUser</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Registration">Register</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ViewUser">ViewUser</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Registration">Register</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Logout</a>
                         </li>
                     </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Logout</a>
-                            </li>
-                        </ul>
-                    
                 </div>
             </div>
         </nav>
