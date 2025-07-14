@@ -47,12 +47,7 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null,
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    "experiance": null
   },
   {
     "loginCredential": null,
@@ -102,12 +97,7 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null,
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    "experiance": null
   },
   {
     "loginCredential": null,
@@ -157,12 +147,7 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null,
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    "experiance": null
   },
   {
     "loginCredential": null,
@@ -245,12 +230,7 @@
       }
     ],
     "HasExperience": false,
-    "experiance": null,
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    "experiance": null
   },
   {
     "loginCredential": null,
@@ -352,12 +332,7 @@
         "ContactPersonPhone": "06415541456",
         "ContactPersonEmail": "21it19@act.edu.in"
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": null,
@@ -459,12 +434,7 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": null,
@@ -566,12 +536,7 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": null,
@@ -673,12 +638,7 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": null,
@@ -780,12 +740,7 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": {
@@ -890,12 +845,7 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": {
@@ -1000,12 +950,7 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   },
   {
     "loginCredential": {
@@ -1110,11 +1055,6 @@
         "ContactPersonPhone": "",
         "ContactPersonEmail": ""
       }
-    ],
-    "department": null,
-    "designation": null,
-    "employee": null,
-    "team": null,
-    "teamUser": null
+    ]
   }
 ]

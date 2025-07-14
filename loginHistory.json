@@ -1,0 +1,58 @@
+[
+  {
+    "LoginID": 638881258427743227,
+    "UserID": 10,
+    "status": "Active",
+    "loginTime": "2025-07-14T21:37:22.7745468+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881264996560914,
+    "UserID": 10,
+    "status": "Active",
+    "loginTime": "2025-07-14T21:48:19.6560919+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881265453901048,
+    "UserID": 12,
+    "status": "Active",
+    "loginTime": "2025-07-14T21:49:05.3901049+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881268017626534,
+    "UserID": 11,
+    "status": "Active",
+    "loginTime": "2025-07-14T21:53:21.7626535+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881270008018043,
+    "UserID": 12,
+    "status": "Active",
+    "loginTime": "2025-07-14T21:56:40.8018047+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881270867881500,
+    "UserID": 10,
+    "status": "Active",
+    "loginTime": "2025-07-14T21:58:06.7881501+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881274176255535,
+    "UserID": 10,
+    "status": "Active",
+    "loginTime": "2025-07-14T22:03:37.6255537+05:30",
+    "loginOut": null
+  },
+  {
+    "LoginID": 638881279500837261,
+    "UserID": 12,
+    "status": "Active",
+    "loginTime": "2025-07-14T22:12:30.0837263+05:30",
+    "loginOut": null
+  }
+]

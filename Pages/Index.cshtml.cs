@@ -8,7 +8,7 @@ using UserManagement.User;
 namespace DemoASPApp.Pages
 {
 
-    public class LoginModel : PageModel
+    public class IndexModel : PageModel
     {
         public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
         public void OnGet()
@@ -55,7 +55,7 @@ namespace DemoASPApp.Pages
 
                 if (user != null)
                 {
-
+                    Common.AddLoginRecord(user.userID ?? 0);
                     return RedirectToPage("Index1", new { un = user.userName, isEmployee = isEmployee });
                 }
 

@@ -12,18 +12,6 @@ namespace DemoASPApp.model
         public static List<LoginHistory> loginRecords = new List<LoginHistory>();
         public static string loginHistoryFile = "loginHistory.json";
 
-        public static void SaveLoginHistory(LoginHistory history)
-        {
-            loginRecords.Add(history);
-
-            var json = JsonSerializer.Serialize(loginRecords, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(loginHistoryFile, json);
-        }
-
         public static void LoadLoginHistory()
         {
             if (File.Exists(loginHistoryFile))
@@ -32,6 +20,47 @@ namespace DemoASPApp.model
                 loginRecords = JsonSerializer.Deserialize<List<LoginHistory>>(json) ?? new List<LoginHistory>();
             }
         }
+
+        public static void SaveLoginHistory()
+        {
+            var json = JsonSerializer.Serialize(loginRecords, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(loginHistoryFile, json);
+        }
+
+        public static void AddLoginRecord(long userId)
+        {
+            LoadLoginHistory(); 
+
+            var login = new LoginHistory
+            {
+                LoginID = DateTime.Now.Ticks,
+                UserID = userId,
+                status = "Active",
+                loginTime = DateTime.Now,
+                loginOut = null
+            };
+
+            loginRecords.Add(login);
+            SaveLoginHistory();
+        }
+
+        public static void MarkLogout(long userId)
+        {
+            LoadLoginHistory(); 
+
+            var lastLogin = loginRecords
+                .Where(r => r.UserID == userId && r.status == "Active")
+                .OrderByDescending(r => r.loginTime)
+                .FirstOrDefault();
+
+            if (lastLogin != null)
+            {
+                lastLogin.loginOut = DateTime.Now;
+                lastLogin.status = "Inactive";
+                SaveLoginHistory(); 
+            }
+        }
+
         public static List<UserInfo> RegistedUsers
         {
 
