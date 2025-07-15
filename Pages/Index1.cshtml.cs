@@ -1,6 +1,7 @@
 using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
@@ -12,11 +13,14 @@ namespace DemoASPApp.Pages
         {
             _logger = logger;
         }
+        [BindProperty]
+        public UserInfo CurrentUser { get; set; }
 
-        public void OnGet()
+        public void OnGet(string un)
         {
-
-            ViewData["uname"] = Request.Query["un"].ToString();
+            Common.LoadRegisterUsers();
+            CurrentUser = Common.users.FirstOrDefault(u => u.userName == un);
+            ViewData["UserModel"] = this;
         }
         public IActionResult OnGetLogout(string un)
         {
@@ -24,9 +28,9 @@ namespace DemoASPApp.Pages
             Common.LoadLoginHistory(); 
             var user = Common.users.FirstOrDefault(u => u.userName == un);
 
-            if (user != null)
+            if (user != null && user.userID != null)
             {
-                Common.MarkLogout(user.userID ?? 0); 
+                Common.MarkLogout((long)user.userID);
             }
 
             return RedirectToPage("Index");

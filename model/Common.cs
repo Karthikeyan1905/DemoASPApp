@@ -11,7 +11,7 @@ namespace DemoASPApp.model
         public static List<Employee> employees { get; set; } = new List<Employee>();
         public static List<LoginHistory> loginRecords = new List<LoginHistory>();
         public static string loginHistoryFile = "loginHistory.json";
-
+        //LoadUserSession
         public static void LoadLoginHistory()
         {
             if (File.Exists(loginHistoryFile))
@@ -43,23 +43,27 @@ namespace DemoASPApp.model
             loginRecords.Add(login);
             SaveLoginHistory();
         }
-
-        public static void MarkLogout(long userId)
+        public static UserInfo LoadUserSession(string userName)
         {
-            LoadLoginHistory(); 
-
-            var lastLogin = loginRecords
-                .Where(r => r.UserID == userId && r.status == "Active")
-                .OrderByDescending(r => r.loginTime)
-                .FirstOrDefault();
-
-            if (lastLogin != null)
-            {
-                lastLogin.loginOut = DateTime.Now;
-                lastLogin.status = "Inactive";
-                SaveLoginHistory(); 
-            }
+            LoadRegisterUsers();
+            return users.FirstOrDefault(u => u.userName == userName);
         }
+        public static void MarkLogout(long userId)
+            {
+                LoadLoginHistory(); 
+
+                var lastLogin = loginRecords
+                    .Where(r => r.UserID == userId && r.status == "Active")
+                    .OrderByDescending(r => r.loginTime)
+                    .FirstOrDefault();
+
+                if (lastLogin != null)
+                {
+                    lastLogin.loginOut = DateTime.Now;
+                    lastLogin.status = "Inactive";
+                    SaveLoginHistory(); 
+                }
+            }
 
         public static List<UserInfo> RegistedUsers
         {
@@ -89,7 +93,14 @@ namespace DemoASPApp.model
         public static List<UserInfo> GetJsonToRegistedUsers(string jsonInput)
         {
             if (!string.IsNullOrEmpty(jsonInput))
-                return JsonSerializer.Deserialize<List<UserInfo>>(jsonInput);
+                return JsonSerializer.Deserialize<List<UserInfo>>(jsonInput)!;
+            return null!;
+
+        }
+        public static List<T> GetJsonToModelobject<T>(string jsonInput)
+        {
+            if (!string.IsNullOrEmpty(jsonInput))
+                return JsonSerializer.Deserialize<List<T>>(jsonInput);
             return null;
 
         }
@@ -123,6 +134,8 @@ namespace DemoASPApp.model
         public static bool LoadRegisterUsers()
         {
             users = GetJsonToRegistedUsers(FetchFromFile());
+            users = GetJsonToModelobject<UserInfo>(FetchFromFile());
+           
             return true;
 
         }
