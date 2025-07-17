@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DemoASPApp.model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DemoASPApp.Pages
 {
-    public class PrivacyModel : PageModel
+    public class PrivacyModel : BaseModel
     {
         private readonly ILogger<PrivacyModel> _logger;
 

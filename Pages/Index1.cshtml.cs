@@ -1,11 +1,12 @@
-using DemoASPApp.model;
+﻿using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
-    public class Index1Model : PageModel
+    public class Index1Model : BaseModel
     {
         private readonly ILogger<Index1Model> _logger;
 
@@ -13,27 +14,41 @@ namespace DemoASPApp.Pages
         {
             _logger = logger;
         }
-        [BindProperty]
-        public UserInfo CurrentUser { get; set; }
 
-        public void OnGet(string un)
-        {
-            Common.LoadRegisterUsers();
-            CurrentUser = Common.users.FirstOrDefault(u => u.userName == un);
-            ViewData["UserModel"] = this;
-        }
-        public IActionResult OnGetLogout(string un)
-        {
-            Common.LoadRegisterUsers();
-            Common.LoadLoginHistory(); 
-            var user = Common.users.FirstOrDefault(u => u.userName == un);
 
-            if (user != null && user.userID != null)
+
+        public void OnGet()
+        {
+            string uname = Request.Query["un"];
+            Common.LoadRegisterUsers();
+
+            if (TempData.ContainsKey("sessionUser"))
             {
-                Common.MarkLogout((long)user.userID);
+                
+                TempData.Keep("sessionUser"); 
             }
 
-            return RedirectToPage("Index");
+            LoadSession(); 
+
+            if (CurrentUser != null)
+            {
+                ViewData["uname"] = CurrentUser.userName;
+            }
+        }
+
+
+
+        public IActionResult OnGetLogout()
+        {
+            Common.LoadRegisterUsers();
+            Common.LoadLoginHistory();
+            LoadSession();
+
+            if (CurrentUser != null)
+            {
+                Common.MarkLogout((long)CurrentUser.userID);
+            }
+            return RedirectToPage("/Index");
         }
     }
 }

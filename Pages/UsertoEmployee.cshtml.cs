@@ -6,7 +6,7 @@ using DemoASPApp.model;
 
 namespace DemoASPApp.Pages
 {
-    public class UsertoEmployeeModel : PageModel
+    public class UsertoEmployeeModel : BaseModel
     {
         [BindProperty] public UserInfo user { get; set; }
 

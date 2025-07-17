@@ -5,7 +5,7 @@ using DemoASPApp.model;
 
 namespace DemoASPApp.Pages
 {
-    public class TeamModel : PageModel
+    public class TeamModel : BaseModel
     {
         [BindProperty]
         public UserInfo user { get; set; }

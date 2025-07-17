@@ -7,7 +7,7 @@ using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
-    public class InfoModel : PageModel
+    public class InfoModel : BaseModel
     {
         public void OnGet()
         {

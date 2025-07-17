@@ -6,7 +6,7 @@ using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
-    public class UserDataModel : PageModel
+    public class UserDataModel : BaseModel
     {
         [BindProperty]
         public UserInfo user { get; set; }

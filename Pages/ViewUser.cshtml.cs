@@ -2,19 +2,31 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserManagement.User;
+
 namespace DemoASPApp.Pages
 {
-    public class ViewUserModel : PageModel
+    public class ViewUserModel : BaseModel
     {
-        [BindProperty]
-        public UserInfo CurrentUser { get; set; }
+        
 
-        public void OnGet(string id)
+        public void OnGet(string un)
+        {
+            Common.LoadRegisterUsers(); 
+            
+        }
+
+        public IActionResult OnGetLogout(string un)
         {
             Common.LoadRegisterUsers();
-            CurrentUser = Common.users.FirstOrDefault(u => u.userID.ToString() == id);
-            ViewData["UserModel"] = this;
+            Common.LoadLoginHistory();
+
+            var user = Common.users.FirstOrDefault(u => u.userName == un);
+            if (user != null && user.userID.HasValue)
+            {
+                Common.MarkLogout((long)user.userID);
+            }
+
+            return RedirectToPage("Index");
         }
     }
 }
-

@@ -7,7 +7,7 @@ using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
-    public class DesignationModel : PageModel
+    public class DesignationModel : BaseModel
     {
         
         public Employee Employee { get; set; }

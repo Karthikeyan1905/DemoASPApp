@@ -1,71 +1,74 @@
-﻿using DemoASPApp.model;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.Department;
-using UserManagement.User;
+﻿    using DemoASPApp.model;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using System.Text.Json;
+    using UserManagement.Department;
+    using UserManagement.User;
 
-namespace DemoASPApp.Pages
-{
-
-    public class IndexModel : PageModel
+    namespace DemoASPApp.Pages
     {
-        public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
-        public void OnGet()
-        {
-            Common.LoadRegisterUsers();
-            Common.LoadRegisteredEmployees();
 
-        }
-
-        public IActionResult OnPost(string uname, string psw)
+        public class IndexModel : PageModel
         {
-            if (!string.IsNullOrWhiteSpace(uname))
+            public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
+            public void OnGet()
             {
-                UserInfo user = null;
+                Common.LoadRegisterUsers();
+                Common.LoadRegisteredEmployees();
 
-                if (!isEmployee)
+            }
+
+            public IActionResult OnPost(string uname, string psw)
+            {
+                if (!string.IsNullOrWhiteSpace(uname))
                 {
-                    foreach (var u in Common.users)
+                    UserInfo user = null;
+
+                    if (!isEmployee)
                     {
-                        if (u.loginCredential != null &&
-                            u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
+                        foreach (var u in Common.users)
                         {
-                            user = u;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    if (Common.employees != null)
-                    {
-                        foreach (var e in Common.employees)
-                        {
-                            if (e.user != null &&
-                                e.user.loginCredential != null &&
-                                e.user.loginCredential.loginUsername == uname )
+                            if (u.loginCredential != null &&
+                                u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
                             {
-                                user = e.user;
+                                user = u;
                                 break;
                             }
                         }
                     }
+                    else
+                    {
+                        if (Common.employees != null)
+                        {
+                            foreach (var e in Common.employees)
+                            {
+                                if (e.user != null &&
+                                    e.user.loginCredential != null &&
+                                    e.user.loginCredential.loginUsername == uname )
+                                {
+                                    user = e.user;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (user != null)
+                    {
+                        Common.AddLoginRecord(user.userID ?? 0);
+
+                        TempData["sessionUser"] = JsonSerializer.Serialize(user);
+                        return RedirectToPage("Index1", new { un = user.userName, isEmployee = isEmployee });
+                    }
+
+                    ViewData["EMsg"] = "Username not found. Please register first.";
+                    return Page();
                 }
 
-                if (user != null)
-                {
-                    Common.AddLoginRecord(user.userID ?? 0);
-                    return RedirectToPage("Index1", new { un = user.userName, isEmployee = isEmployee });
-                }
-
-                ViewData["EMsg"] = "Username not found. Please register first.";
+                ViewData["EMsg"] = "Username is required.";
                 return Page();
             }
 
-            ViewData["EMsg"] = "Username is required.";
-            return Page();
         }
-
     }
-}

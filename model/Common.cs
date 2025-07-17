@@ -12,6 +12,7 @@ namespace DemoASPApp.model
         public static List<LoginHistory> loginRecords = new List<LoginHistory>();
         public static string loginHistoryFile = "loginHistory.json";
         //LoadUserSession
+ 
         public static void LoadLoginHistory()
         {
             if (File.Exists(loginHistoryFile))
@@ -29,7 +30,7 @@ namespace DemoASPApp.model
 
         public static void AddLoginRecord(long userId)
         {
-            LoadLoginHistory(); 
+            LoadLoginHistory();
 
             var login = new LoginHistory
             {
@@ -43,27 +44,24 @@ namespace DemoASPApp.model
             loginRecords.Add(login);
             SaveLoginHistory();
         }
-        public static UserInfo LoadUserSession(string userName)
-        {
-            LoadRegisterUsers();
-            return users.FirstOrDefault(u => u.userName == userName);
-        }
+
         public static void MarkLogout(long userId)
+        {
+            LoadLoginHistory();
+
+            var lastLogin = loginRecords
+            .Where(r => r.UserID == userId && r.status.Equals("Active", StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(r => r.loginTime)
+            .FirstOrDefault();
+
+            if (lastLogin != null)
             {
-                LoadLoginHistory(); 
-
-                var lastLogin = loginRecords
-                    .Where(r => r.UserID == userId && r.status == "Active")
-                    .OrderByDescending(r => r.loginTime)
-                    .FirstOrDefault();
-
-                if (lastLogin != null)
-                {
-                    lastLogin.loginOut = DateTime.Now;
-                    lastLogin.status = "Inactive";
-                    SaveLoginHistory(); 
-                }
+                lastLogin.loginOut = DateTime.Now;
+                lastLogin.status = "Inactive";
+                SaveLoginHistory(); 
             }
+        }
+        
 
         public static List<UserInfo> RegistedUsers
         {
