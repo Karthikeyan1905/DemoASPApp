@@ -28,15 +28,15 @@ namespace DemoASPApp.Pages
                 TempData.Keep("sessionUser"); 
             }
 
-            LoadSession(); 
+            var sessionUser = CurrentUser;
+            LoadSession();
+            ViewData["UserModel"] = new { user = sessionUser };
 
             if (CurrentUser != null)
             {
                 ViewData["uname"] = CurrentUser.userName;
             }
         }
-
-
 
         public IActionResult OnGetLogout()
         {
@@ -46,6 +46,7 @@ namespace DemoASPApp.Pages
 
             if (CurrentUser != null)
             {
+                
                 Common.MarkLogout((long)CurrentUser.userID);
             }
             return RedirectToPage("/Index");

@@ -7,26 +7,29 @@ namespace DemoASPApp.Pages
 {
     public class ViewUserModel : BaseModel
     {
-        
 
-        public void OnGet(string un)
+        [BindProperty]
+        public UserInfo user { get; set; }
+        public void OnGet()
         {
-            Common.LoadRegisterUsers(); 
-            
-        }
-
-        public IActionResult OnGetLogout(string un)
-        {
+            string uname = Request.Query["un"];
             Common.LoadRegisterUsers();
-            Common.LoadLoginHistory();
 
-            var user = Common.users.FirstOrDefault(u => u.userName == un);
-            if (user != null && user.userID.HasValue)
+            if (TempData.ContainsKey("sessionUser"))
             {
-                Common.MarkLogout((long)user.userID);
+
+                TempData.Keep("sessionUser");
             }
 
-            return RedirectToPage("Index");
+            var sessionUser = CurrentUser;
+            LoadSession();
+            ViewData["UserModel"] = new { user = sessionUser };
+
+            if (CurrentUser != null)
+            {
+                ViewData["uname"] = CurrentUser.userName;
+            }
         }
+
     }
 }

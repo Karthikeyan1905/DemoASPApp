@@ -1,7 +1,7 @@
 ﻿@page
 @model DemoASPApp.Pages.UsertoEmployeeModel
 @{
-    Layout = "_Layout";
+    Layout = "_MyLayout";
 }
 
 <h2>Promote User to Employee</h2>
@@ -18,7 +18,7 @@
         <label>Designation:</label>
         <input type="text" name="designation" required />
 
-        <input type="hidden" name="userID" value="@Model.user.userID" />
+        <input type="hidden" name="userID" value="@Model.user.userID" /><br /><br />
         <button type="submit">Promote to Employee</button>
     </form>
 }

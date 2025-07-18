@@ -21,43 +21,32 @@
 
             public IActionResult OnPost(string uname, string psw)
             {
-                if (!string.IsNullOrWhiteSpace(uname))
+                if (!string.IsNullOrWhiteSpace(uname) && !string.IsNullOrWhiteSpace(psw))
                 {
                     UserInfo user = null;
 
-                    if (!isEmployee)
-                    {
                         foreach (var u in Common.users)
                         {
-                            if (u.loginCredential != null &&
-                                u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
+                        if (u.loginCredential != null &&
+                        u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
                             {
+                                if (u.Status == "A") { 
                                 user = u;
                                 break;
                             }
-                        }
-                    }
-                    else
-                    {
-                        if (Common.employees != null)
-                        {
-                            foreach (var e in Common.employees)
-                            {
-                                if (e.user != null &&
-                                    e.user.loginCredential != null &&
-                                    e.user.loginCredential.loginUsername == uname )
+                                else
                                 {
-                                    user = e.user;
-                                    break;
-                                }
-                            }
+                                    ViewData["EMsg"] = "User is Pending Please Wait for Approval.";
+                                    return Page();
+                                }  
                         }
-                    }
+                        }
 
-                    if (user != null)
+                    if (user != null )
                     {
+                    
                         Common.AddLoginRecord(user.userID ?? 0);
-
+                        Common.CurrentUser = user;
                         TempData["sessionUser"] = JsonSerializer.Serialize(user);
                         return RedirectToPage("Index1", new { un = user.userName, isEmployee = isEmployee });
                     }
@@ -69,6 +58,5 @@
                 ViewData["EMsg"] = "Username is required.";
                 return Page();
             }
-
         }
     }

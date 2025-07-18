@@ -1,4 +1,3 @@
-
 using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,8 +5,9 @@ using UserManagement.User;
 
 namespace DemoASPApp.Pages
 {
-    public class UserDataModel : BaseModel
+    public class ViewDetailsModel : BaseModel
     {
+
         [BindProperty]
         public UserInfo user { get; set; }
         public void OnGet()
@@ -24,13 +24,5 @@ namespace DemoASPApp.Pages
             }
         }
     }
+    
 }
-//foreach(UserInfo currentuser  in Common.users)
-//{
-//    if(currentuser.userID.ToString() == id)
-//    {
-//        user = currentuser;
-//        break;
-
-//    }
-//}

@@ -11,7 +11,7 @@ namespace DemoASPApp.model
         public static List<Employee> employees { get; set; } = new List<Employee>();
         public static List<LoginHistory> loginRecords = new List<LoginHistory>();
         public static string loginHistoryFile = "loginHistory.json";
-        //LoadUserSession
+    
  
         public static void LoadLoginHistory()
         {
@@ -124,10 +124,12 @@ namespace DemoASPApp.model
 
         public static string FetchFromFile()
         {
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, "[]"); 
+            }
 
-            return System.IO.File.ReadAllText(filePath);
-
-
+            return File.ReadAllText(filePath);
         }
         public static bool LoadRegisterUsers()
         {
@@ -190,6 +192,7 @@ namespace DemoASPApp.model
             }
         }
 
+        public static UserInfo CurrentUser { get; internal set; }
 
         public static bool SaveEmployeesToFile()
         {

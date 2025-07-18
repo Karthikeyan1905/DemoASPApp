@@ -1,0 +1,115 @@
+﻿/* Base reset and typography */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #007acc !important;
+}
+
+.nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    margin-right: 15px;
+    transition: color 0.2s ease-in-out;
+}
+
+    .nav-link:hover {
+        color: #007acc !important;
+        text-decoration: underline;
+    }
+
+/* Footer styling */
+footer {
+    background-color: #f9f9f9;
+    padding: 15px 0;
+    font-size: 0.9em;
+    color: #666;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+/* Table container */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Table headers */
+thead th {
+    background-color: #007acc;
+    color: white;
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+    border-bottom: 2px solid #005fa3;
+}
+
+/* Table rows */
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+}
+
+/* Hover effect */
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Action links */
+td a {
+    margin-right: 10px;
+    color: #007acc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    td a:hover {
+        text-decoration: underline;
+        color: #005fa3;
+    }
+
+/* Status text */
+td span {
+    font-style: italic;
+    color: #888;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .nav-link {
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}

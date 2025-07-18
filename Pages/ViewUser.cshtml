@@ -2,7 +2,7 @@
 @using DemoASPApp.Pages
 @using DemoASPApp.model
 @using UserManagement.User
-@model InfoModel
+@model DemoASPApp.Pages.ViewUserModel
 @{
     Layout = "_Layout";
 }
@@ -17,6 +17,7 @@
             <th>Father Name</th>
             <th>Aadhar Number</th>
             <th>Action</th>
+            <th>Status</th>
            
         </tr>
     </thead>
@@ -29,7 +30,6 @@
                 <td>@user.fatherName</td>
                 <td>@user.AadhaarNumber</td>
                 <td>
-                    
                         <input type="hidden" name="userID" value="@user.userID" />
                         <a href="/UserData?id=@user.userID" >View</a>
                     @{
@@ -46,6 +46,7 @@
                     }
                      
                 </td>
+                <td>@(string.IsNullOrEmpty(user.Status) ? "Pending" : user.Status)</td>
             </tr>
         }
     </tbody>

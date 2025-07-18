@@ -19,7 +19,7 @@ namespace DemoASPApp.Pages
             var form = Request.Form;
             string loginUsername = form["loginUsername"];
 
-            
+
             foreach (var u in Common.users)
             {
                 if (u.loginCredential != null &&
@@ -30,25 +30,34 @@ namespace DemoASPApp.Pages
                 }
             }
 
-            
+
             user.userID = Common.users.Count > 0
                 ? Common.users.Max(u => u.userID ?? 0) + 1
                 : 1;
 
             user.loginCredential = new LoginCredential
             {
-                
+
                 loginUsername = loginUsername,
                 loginPassword = "1234",
-                
+
             };
 
-            
+
             user.phone = GetPhoneFromCollection();
             user.addresses = GetAddressesFromCollection();
             user.experiance = GetExperienceFromCollection();
             user.educations = GetEducationFromCollection();
+            if (user.userName == "admin" && user.loginCredential?.loginUsername == "admin")
 
+            {
+                user.Status = "A";
+                user.userRoleID = 1;
+            }
+            else { 
+            user.Status = "P";
+                }
+            user.CreatedOn = DateTime.Now;
             Common.users.Add(user);
             Common.SaveToFile();
 
