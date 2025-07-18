@@ -106,7 +106,7 @@
     ],
     "Status": "A",
     "CreatedOn": "2025-07-18T13:07:34.158338+05:30",
-    "UpdatedOn": "0001-01-01T00:00:00",
+    "UpdatedOn": "2025-07-18T19:55:07.0998+05:30",
     "createdBy": 0,
     "updatedBy": 0
   },
@@ -215,9 +215,120 @@
         "ContactPersonEmail": ""
       }
     ],
-    "Status": "P",
+    "Status": "I",
     "CreatedOn": "2025-07-18T13:14:49.4085687+05:30",
-    "UpdatedOn": "0001-01-01T00:00:00",
+    "UpdatedOn": "2025-07-18T20:03:25.0650935+05:30",
+    "createdBy": 0,
+    "updatedBy": 0
+  },
+  {
+    "userRoleID": 0,
+    "loginCredential": {
+      "loginUsername": "karthi1234",
+      "login_Password": "1234"
+    },
+    "userID": 3,
+    "email": "21it19@act.edu.in",
+    "userName": "Karthikeyan S",
+    "fatherName": "sara",
+    "motherName": "kavi",
+    "AadhaarNumber": 46132465123,
+    "panCardNo": null,
+    "panCardNumber": null,
+    "HasPanCard": false,
+    "passportNo": null,
+    "passportNumber": null,
+    "HasPassport": false,
+    "phone": [
+      {
+        "phoneNumber": 6415541456,
+        "phoneType": "Phone1"
+      },
+      {
+        "phoneNumber": 0,
+        "phoneType": "Phone2"
+      }
+    ],
+    "educations": [
+      {
+        "instituteName": "sdqwfv",
+        "instituteAddress": null,
+        "board": "wdvcqs",
+        "courseName": "10th Standard",
+        "percentage": 59,
+        "startYear": 0
+      },
+      {
+        "instituteName": "sxqa",
+        "instituteAddress": null,
+        "board": "qcvew",
+        "courseName": "12th Standard",
+        "percentage": 98,
+        "startYear": 0
+      },
+      {
+        "instituteName": "qdwv",
+        "instituteAddress": "qcvdw ",
+        "board": null,
+        "courseName": "sfd",
+        "percentage": 85,
+        "startYear": 0
+      },
+      {
+        "instituteName": "csa;lkmb n",
+        "instituteAddress": "nacskji",
+        "board": null,
+        "courseName": "jask c",
+        "percentage": 12,
+        "startYear": 0
+      }
+    ],
+    "addresses": [
+      {
+        "addressType": "Permanent",
+        "permDoorNo": "235",
+        "street": "wqdc",
+        "town": "Thanjavur",
+        "district": "qqwdw",
+        "state": " qdwwqd",
+        "country": "India",
+        "pincode": 613203
+      },
+      {
+        "addressType": "Current",
+        "permDoorNo": "3",
+        "street": "sac",
+        "town": "Thanjavur",
+        "district": "scad",
+        "state": "sac",
+        "country": "India",
+        "pincode": 451265
+      }
+    ],
+    "HasExperience": false,
+    "experiance": [
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      },
+      {
+        "CompanyName": "",
+        "CompanyAddress": "",
+        "WorkingExperienceInMonths": 0,
+        "ContactPersonName": "",
+        "ContactPersonDesignation": "",
+        "ContactPersonPhone": "",
+        "ContactPersonEmail": ""
+      }
+    ],
+    "Status": "A",
+    "CreatedOn": "2025-07-18T20:02:33.5453481+05:30",
+    "UpdatedOn": "2025-07-18T20:03:18.0354501+05:30",
     "createdBy": 0,
     "updatedBy": 0
   }

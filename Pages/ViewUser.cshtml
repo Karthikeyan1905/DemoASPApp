@@ -24,18 +24,21 @@
     <tbody>
         @foreach (UserInfo user in Common.users)
         {
+            if (user.userRoleID == 1)
+            {
+                continue; // Skip admin users
+            }
             <tr>
                 <td>@user.userID</td>
                 <td>@user.userName</td>
                 <td>@user.fatherName</td>
                 <td>@user.AadhaarNumber</td>
                 <td>
-                        <input type="hidden" name="userID" value="@user.userID" />
-                        <a href="/UserData?id=@user.userID" >View</a>
+                    <input type="hidden" name="userID" value="@user.userID" />
+                    <a href="/UserData?id=@user.userID">View</a>
                     @{
                         bool isPromoted = Common.employees != null && Common.employees.Any(e => e.UserID == user.userID);
                     }
-
                     @if (!isPromoted)
                     {
                         <a href="/UsertoEmployee?id=@user.userID">Register as Employee</a>
@@ -44,11 +47,27 @@
                     {
                         <span style="color:gray;">Already an Employee</span>
                     }
-                     
                 </td>
-                <td>@(string.IsNullOrEmpty(user.Status) ? "Pending" : user.Status)</td>
+                <td>
+                    <form method="post" asp-page-handler="ChangeStatus">
+                        <input type="hidden" name="userID" value="@user.userID" />
+                        @if (user.Status == "P")
+                        {
+                            <button type="submit" name="newStatus" value="A">Activate</button>
+                        }
+                        else if (user.Status == "A")
+                        {
+                            <button type="submit" name="newStatus" value="I">Deactivate</button>
+                        }
+                        else if (user.Status == "I")
+                        {
+                            <button type="submit" name="newStatus" value="A">Activate</button>
+                        }
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
+
 </table>
 

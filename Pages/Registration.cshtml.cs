@@ -11,8 +11,8 @@ namespace DemoASPApp.Pages
     {
         public void OnGet()
         {
+            TempData.Keep("sessionUser");
 
-            
         }
         public IActionResult OnPost(UserInfo user)
         {

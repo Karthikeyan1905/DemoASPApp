@@ -32,19 +32,22 @@
         <input type="number" placeholder="Enter Aadhar Number" name="AadhaarNumber" id="AadhaarNumber" required><br />
 
         <!-- PAN Card Section -->
+        <div class="radio-group">
         <label><b>Do you have a PAN card?</b></label><br>
         <input type="radio" name="hasPan" value="yes" onclick="togglePanField(true)"> Yes
         <input type="radio" name="hasPan" value="no" onclick="togglePanField(false)"> No<br />
-
+        </div>
         <div id="panCardDiv" style="display: none; margin-top: 10px;">
             <label for="panCardNumber"><b>PAN Card Number</b></label><br>
             <input type="text" placeholder="Enter PAN Card Number" name="panCardNo" id="panCardNumber"><br>
         </div>
 
         <!-- Passport Section -->
+        <div class="radio-group">
         <label><b>Do you have a Passport?</b></label><br>
         <input type="radio" name="hasPassport" value="yes" onclick="togglePassportField(true)"> Yes
         <input type="radio" name="hasPassport" value="no" onclick="togglePassportField(false)"> No<br />
+        </div>
 
         <div id="passportDiv" style="display: none; margin-top: 10px;">
             <label for="passportNumber"><b>Passport Number</b></label><br>
@@ -174,10 +177,11 @@
         </fieldset>
 
         <!-- Has Experience -->
+        <div class="radio-group">
         <label><b>Do you have prior work experience?</b></label><br>
         <input type="radio" name="hasExperience" value="yes" onclick="toggleExperience(true)"> Yes
         <input type="radio" name="hasExperience" value="no" onclick="toggleExperience(false)"> No
-
+        </div>
         <!-- Experience Section (Initially Hidden) -->
         <div id="experienceSection" style="display: none; margin-top: 20px;">
 
@@ -239,14 +243,22 @@
         </div>
 
         <hr>
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      
 
         <button type="submit" class="registerbtn">Register</button>
     </div>
 
-    <div class="container signin">
-        <p>Already have an account? <a href="/Index">Sign in</a>.</p>
-    </div>
+    @{
+        var sessionUserJson = TempData.Peek("sessionUser") as string;
+        bool isLoggedIn = !string.IsNullOrEmpty(sessionUserJson);
+    }
+
+    @if (!isLoggedIn)
+    {
+        <div class="container signin">
+            <p>Already have an account? <a href="/Index">Sign in</a>.</p>
+        </div>
+    }
 </form>
 <script>
        function togglePanField(show) {

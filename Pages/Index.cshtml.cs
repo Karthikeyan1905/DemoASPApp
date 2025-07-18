@@ -6,45 +6,51 @@
     using UserManagement.Department;
     using UserManagement.User;
 
-    namespace DemoASPApp.Pages
+namespace DemoASPApp.Pages
+{
+
+    public class IndexModel : PageModel
     {
-
-        public class IndexModel : PageModel
+        public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
+        public void OnGet()
         {
-            public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
-            public void OnGet()
-            {
-                Common.LoadRegisterUsers();
-                Common.LoadRegisteredEmployees();
+            Common.LoadRegisterUsers();
+            Common.LoadRegisteredEmployees();
 
-            }
+        }
 
-            public IActionResult OnPost(string uname, string psw)
+        public IActionResult OnPost(string uname, string psw)
+        {
+            if (!string.IsNullOrWhiteSpace(uname) && !string.IsNullOrWhiteSpace(psw))
             {
-                if (!string.IsNullOrWhiteSpace(uname) && !string.IsNullOrWhiteSpace(psw))
+                UserInfo user = null;
+
+                foreach (var u in Common.users)
                 {
-                    UserInfo user = null;
-
-                        foreach (var u in Common.users)
-                        {
-                        if (u.loginCredential != null &&
-                        u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
-                            {
-                                if (u.Status == "A") { 
-                                user = u;
-                                break;
-                            }
-                                else
-                                {
-                                    ViewData["EMsg"] = "User is Pending Please Wait for Approval.";
-                                    return Page();
-                                }  
-                        }
-                        }
-
-                    if (user != null )
+                    if (u.loginCredential != null &&
+                    u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
                     {
-                    
+                        if (u.Status == "A")
+                        {
+                            user = u;
+                            break;
+                        }
+                        else if (u.Status == "P")
+                        {
+                            ViewData["EMsg"] = "User is Pending Please Wait for Approval.";
+                            return Page();
+                        }
+                        else
+                        {
+                            ViewData["EMsg"] = "User is InActive Please Wait for Approval.";
+                            return Page();
+                        }
+                    }
+
+                }
+                    if (user != null)
+                    {
+
                         Common.AddLoginRecord(user.userID ?? 0);
                         Common.CurrentUser = user;
                         TempData["sessionUser"] = JsonSerializer.Serialize(user);

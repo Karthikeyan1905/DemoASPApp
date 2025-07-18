@@ -30,6 +30,21 @@ namespace DemoASPApp.Pages
                 ViewData["uname"] = CurrentUser.userName;
             }
         }
+        public IActionResult OnPostChangeStatus(int userID, string newStatus)
+        {
+            Common.LoadRegisterUsers();
+
+            var user = Common.users.FirstOrDefault(u => u.userID == userID);
+            if (user != null)
+            {
+                user.Status = newStatus;
+                user.UpdatedOn = DateTime.Now;
+                Common.SaveToFile();
+            }
+
+            return RedirectToPage(); 
+        }
+
 
     }
 }
