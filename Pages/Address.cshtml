@@ -9,27 +9,34 @@
 
 @if (Model.user != null && Model.user.addresses != null && Model.user.addresses.Count > 0)
 {
-    <ul>
+    
         @foreach (Address address in Model.user.addresses)
         {
+            <div class="company-card">
+            <ul>
+         
             <li>
                 <strong>Address Type:</strong> @address.addressType<br />
-                <strong>Door No:</strong> @address.permDoorNo<br />
-                <strong>Street:</strong> @address.street<br />
-                <strong>Town:</strong> @address.town<br />
-                <strong>District:</strong> @address.district<br />
-                <strong>State:</strong> @address.state<br />
-                <strong>Country:</strong> @address.country<br />
+            </li>
+            <li> <strong>Door No:</strong> @address.permDoorNo<br /></li>
+            <li>  <strong>Street:</strong> @address.street<br /></li>
+            <li>  <strong>Town:</strong> @address.town<br /></li>
+            <li>  <strong>District:</strong> @address.district<br /></li>
+            <li>   <strong>State:</strong> @address.state<br /></li>
+            <li>   <strong>Country:</strong> @address.country<br /></li>
+            <li>
                 <strong>Pincode:</strong> @address.pincode
             </li>
-           
+        
+            </ul>
+            </div>
         }
         <li class="nav-item" style="list-style:none">
             <a class="btn btn-primary" href="/UserData?id=@Model.user.userID">User Info</a>
             <a class="btn btn-primary" href="/ExperianceData?id=@Model.user.userID">Experiance</a>
 
         </li>
-    </ul>
+   
 }
 else
 {

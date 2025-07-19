@@ -9,23 +9,31 @@
 
 @if (Model.user != null && Model.user.educations != null && Model.user.educations.Count > 0)
 {
-    <ul>
+    
         @foreach (Education edu in Model.user.educations)
         {
+            <div class="company-card">
+                <ul>
             <li>
-                <strong>Institute Name:</strong> @edu.instituteName<br />
-                <strong>Institute Address:</strong> @edu.instituteAddress<br />
-                <strong>Board:</strong> @edu.board<br />
-                <strong>Course Name:</strong> @edu.courseName<br />
-                <strong>Percentage:</strong> @edu.percentage<br />
-                <strong>Start Year:</strong> @edu.startYear
+                    <strong>Institute Name:</strong> @edu.instituteName<br />
+                </li>
+                <li>
+                    <strong>Institute Address:</strong> @edu.instituteAddress
+                <br /></li>
+                <li> <strong>Board:</strong> @edu.board<br /></li>
+                <li> <strong>Course Name:</strong> @edu.courseName<br /></li>
+                <li> <strong>Percentage:</strong> @edu.percentage<br /></li>
+                <li>
+                    <strong>Start Year:</strong> @edu.startYear
             </li>
+            </ul>
+            </div>
         }
         <li class="nav-item" style="list-style:none">
             <a class="btn btn-primary" href="/ExperianceData?id=@Model.user.userID">Experience</a>
             
         </li>
-    </ul>
+    
 }
 else
 {

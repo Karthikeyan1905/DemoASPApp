@@ -96,5 +96,12 @@
     "status": "Inactive",
     "loginTime": "2025-07-18T20:20:39.0047561+05:30",
     "loginOut": "2025-07-18T20:30:10.1952662+05:30"
+  },
+  {
+    "LoginID": 638885499472259342,
+    "UserID": 1,
+    "status": "Active",
+    "loginTime": "2025-07-19T19:25:47.2259347+05:30",
+    "loginOut": null
   }
 ]
