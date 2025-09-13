@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoASPApp", "DemoASPApp.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement", "..\UserManagement\UserManagement.csproj", "{4CB5FC83-1305-882A-DA63-0C7751B5468E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementModel", "..\UserManagementModel\UserManagementModel.csproj", "{9AB8AEF5-2B46-46A9-D587-26EC8531E5DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementAPI", "..\UserManagementAPI\UserManagementAPI.csproj", "{83EBEA24-2B31-44BD-8EFD-0508F7D8B745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4CB5FC83-1305-882A-DA63-0C7751B5468E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB5FC83-1305-882A-DA63-0C7751B5468E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB5FC83-1305-882A-DA63-0C7751B5468E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AB8AEF5-2B46-46A9-D587-26EC8531E5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB8AEF5-2B46-46A9-D587-26EC8531E5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB8AEF5-2B46-46A9-D587-26EC8531E5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB8AEF5-2B46-46A9-D587-26EC8531E5DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83EBEA24-2B31-44BD-8EFD-0508F7D8B745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83EBEA24-2B31-44BD-8EFD-0508F7D8B745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83EBEA24-2B31-44BD-8EFD-0508F7D8B745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83EBEA24-2B31-44BD-8EFD-0508F7D8B745}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
