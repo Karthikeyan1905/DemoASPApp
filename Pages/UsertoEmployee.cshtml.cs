@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.User;
-using UserManagement.Department;
 using DemoASPApp.model;
+using UserManagement.Model.Department;
+using UserManagement.Model.User;
 
 namespace DemoASPApp.Pages
 {

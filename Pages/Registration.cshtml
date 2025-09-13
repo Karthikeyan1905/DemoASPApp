@@ -114,40 +114,59 @@
             <input type="text" id="currPincode" name="currPincode" placeholder="Enter Pincode" required>
         </fieldset>
 
-        <!-- 10th Education Info -->
+        <!-- 10th Standard -->
         <fieldset>
             <legend><b>10th Standard</b></legend>
 
             <label for="tenthCollege"><b>School Name</b></label>
             <input type="text" id="tenthCollege" name="tenthCollege" placeholder="Enter School Name" required>
 
+            <label for="tenthAddress"><b>School Address</b></label>
+            <input type="text" id="tenthAddress" name="tenthAddress" placeholder="Enter School Address" required>
+
             <label for="tenthBoard"><b>Board</b></label>
             <input type="text" id="tenthBoard" name="tenthBoard" placeholder="Enter Board Name" required>
 
             <label for="tenthPercentage"><b>Percentage</b></label>
             <input type="text" id="tenthPercentage" name="tenthPercentage" placeholder="Enter Percentage" required>
+
+            <label for="tenthStartYear"><b>Start Year</b></label>
+            <input type="text" id="tenthStartYear" name="tenthStartYear" placeholder="Enter Start Year" required>
+
+            <input type="hidden" name="tenthCourse" value="10th Standard" />
         </fieldset>
 
-        <!-- 12th Education Info -->
+        <!-- 12th Standard -->
         <fieldset style="margin-top: 20px;">
             <legend><b>12th Standard</b></legend>
 
             <label for="twelfthCollege"><b>School Name</b></label>
             <input type="text" id="twelfthCollege" name="twelfthCollege" placeholder="Enter School Name" required>
 
+            <label for="twelfthAddress"><b>School Address</b></label>
+            <input type="text" id="twelfthAddress" name="twelfthAddress" placeholder="Enter School Address" required>
+
             <label for="twelfthBoard"><b>Board</b></label>
             <input type="text" id="twelfthBoard" name="twelfthBoard" placeholder="Enter Board Name" required>
 
             <label for="twelfthPercentage"><b>Percentage</b></label>
             <input type="text" id="twelfthPercentage" name="twelfthPercentage" placeholder="Enter Percentage" required>
+
+            <label for="twelfthStartYear"><b>Start Year</b></label>
+            <input type="text" id="twelfthStartYear" name="twelfthStartYear" placeholder="Enter Start Year" required>
+
+            <input type="hidden" name="twelfthCourse" value="12th Standard" />
         </fieldset>
 
-        <!-- Bachelor's Degree Info -->
+        <!-- Bachelor's Degree -->
         <fieldset style="margin-top: 20px;">
             <legend><b>Bachelor's Degree</b></legend>
 
             <label for="bachelorCollege"><b>College Name</b></label>
             <input type="text" id="bachelorCollege" name="bachelorCollege" placeholder="Enter College Name" required>
+
+            <label for="bachelorAddress"><b>Institute Address</b></label>
+            <input type="text" id="bachelorAddress" name="bachelorAddress" placeholder="Enter Address" required>
 
             <label for="bachelorUniversity"><b>University Name</b></label>
             <input type="text" id="bachelorUniversity" name="bachelorUniversity" placeholder="Enter University Name" required>
@@ -157,14 +176,20 @@
 
             <label for="bachelorPercentage"><b>Percentage</b></label>
             <input type="text" id="bachelorPercentage" name="bachelorPercentage" placeholder="Enter Percentage" required>
+
+            <label for="bachelorStartYear"><b>Start Year</b></label>
+            <input type="text" id="bachelorStartYear" name="bachelorStartYear" placeholder="Enter Start Year" required>
         </fieldset>
 
-        <!-- Master's Degree Info -->
+        <!-- Master's Degree -->
         <fieldset style="margin-top: 20px;">
             <legend><b>Master's Degree</b></legend>
 
             <label for="masterCollege"><b>College Name</b></label>
             <input type="text" id="masterCollege" name="masterCollege" placeholder="Enter College Name" required>
+
+            <label for="masterAddress"><b>Institute Address</b></label>
+            <input type="text" id="masterAddress" name="masterAddress" placeholder="Enter Address" required>
 
             <label for="masterUniversity"><b>University Name</b></label>
             <input type="text" id="masterUniversity" name="masterUniversity" placeholder="Enter University Name" required>
@@ -174,7 +199,11 @@
 
             <label for="masterPercentage"><b>Percentage</b></label>
             <input type="text" id="masterPercentage" name="masterPercentage" placeholder="Enter Percentage" required>
+
+            <label for="masterStartYear"><b>Start Year</b></label>
+            <input type="text" id="masterStartYear" name="masterStartYear" placeholder="Enter Start Year" required>
         </fieldset>
+
 
         <!-- Has Experience -->
         <div class="radio-group">
@@ -245,7 +274,7 @@
         <hr>
       
 
-        <button type="submit" class="registerbtn">Register</button>
+        <button type="submit" onclick="return validateExperienceAndEducation()" class="registerbtn">Register</button>
     </div>
 
     @{
@@ -261,26 +290,79 @@
     }
 </form>
 <script>
-       function togglePanField(show) {
-      document.getElementById("panCardDiv").style.display = show ? "block" : "none";
+    function togglePanField(show) 
+    {
+        document.getElementById("panCardDiv").style.display = show ? "block" : "none";
+    }
+    function togglePassportField(show)
+    {
+        document.getElementById("passportDiv").style.display = show ? "block" : "none"; 
+    }
+    function togglePanField(show) 
+    {
+        const panDiv = document.getElementById("panCardDiv"); panDiv.style.display = show ? "block" : "none"; 
+    }
+    function togglePanField(show) 
+    {
+        document.getElementById("panCardDiv").style.display = show ? "block" : "none";
+    }
+    function togglePassportField(show) 
+    {
+        document.getElementById("passportDiv").style.display = show ? "block" : "none";
+    }
+    function toggleExperience(hasExp) 
+    {
+        document.getElementById("experienceSection").style.display = hasExp ? "block" : "none"; 
     }
 
-    function togglePassportField(show) {
-      document.getElementById("passportDiv").style.display = show ? "block" : "none";
-    }
-    function togglePanField(show) {
-      const panDiv = document.getElementById("panCardDiv");
-      panDiv.style.display = show ? "block" : "none";
-    }
-        function togglePanField(show) {
-      document.getElementById("panCardDiv").style.display = show ? "block" : "none";
-    }
+       
+</script>
+<script>
+    function validateExperienceAndEducation() {
+        let valid = true;
 
-    function togglePassportField(show) {
-      document.getElementById("passportDiv").style.display = show ? "block" : "none";
-    }
+        // Experience entries
+        for (let i = 1; i <= 2; i++) {
+            const companyName = document.querySelector(`[name="company${i}Name"]`);
+            const duration = document.querySelector(`[name="company${i}Duration"]`);
+            const designation = document.querySelector(`[name="company${i}Designation"]`);
 
-       function toggleExperience(hasExp) {
-      document.getElementById("experienceSection").style.display = hasExp ? "block" : "none";
+            [companyName, duration, designation].forEach(field => {
+                if (!field || field.value.trim() === "") {
+                    valid = false;
+                    field.style.border = "2px solid red";
+                } else {
+                    field.style.border = "";
+                }
+            });
+        }
+
+        // Education entries
+        const educationGroups = ["tenth", "twelfth", "bachelor", "master"];
+        educationGroups.forEach(prefix => {
+            const name = document.querySelector(`[name="${prefix}College"]`);
+            const course = document.querySelector(`[name="${prefix}Course"]`);
+            const percentage = document.querySelector(`[name="${prefix}Percentage"]`);
+            const year = document.querySelector(`[name="${prefix}StartYear"]`);
+
+            const requiredFields = [name, course, percentage, year];
+            requiredFields.forEach(field => {
+                if (!field || field.value.trim() === "") {
+                    valid = false;
+                    field.style.border = "2px solid red";
+                } else {
+                    field.style.border = "";
+                }
+            });
+        });
+
+        if (!valid) {
+            alert("Please fill in all required Experience and Education fields before submitting.");
+            return false;
+        }
+
+        return true;
     }
 </script>
+
+

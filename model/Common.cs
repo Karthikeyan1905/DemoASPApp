@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
-using UserManagement.Department;
-using UserManagement.History;
-using UserManagement.User;
+using UserManagement.Model.Department;
+using UserManagement.Model.History;
+using UserManagement.Model.User;
 
 namespace DemoASPApp.model
 {

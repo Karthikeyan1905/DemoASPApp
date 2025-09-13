@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
-using UserManagement.User;
+using UserManagement.Model.User;
 
 namespace DemoASPApp.model
 {
@@ -30,7 +30,6 @@ namespace DemoASPApp.model
             TempData["sessionUser"] = JsonSerializer.Serialize(CurrentUser);
             TempData.Keep("sessionUser");
         }
-
         
     }
 }

@@ -1,6 +1,7 @@
 ﻿@page
 @using DemoASPApp.Pages
 @using DemoASPApp.model
+@using UserManagement.Model.User
 @using UserManagement.User
 @model DemoASPApp.Pages.ViewUserModel
 @{
@@ -26,7 +27,7 @@
         {
             if (user.userRoleID == 1)
             {
-                continue; // Skip admin users
+                continue; 
             }
             <tr>
                 <td>@user.userID</td>
@@ -53,15 +54,15 @@
                         <input type="hidden" name="userID" value="@user.userID" />
                         @if (user.Status == "P")
                         {
-                            <button type="submit" name="newStatus" value="A">Activate</button>
+                            <button type="submit" name="newStatus" value="A">Change to Active</button>
                         }
                         else if (user.Status == "A")
                         {
-                            <button type="submit" name="newStatus" value="I">Deactivate</button>
+                            <button type="submit" name="newStatus" value="I">Change to Inactive</button>
                         }
                         else if (user.Status == "I")
                         {
-                            <button type="submit" name="newStatus" value="A">Activate</button>
+                            <button type="submit" name="newStatus" value="A">Change to Active</button>
                         }
                     </form>
                 </td>

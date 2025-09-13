@@ -11,14 +11,26 @@
     <li><strong>Mother Name:</strong> @Model.user.motherName</li>
     <li><strong>Aadhaar Number:</strong> @Model.user.AadhaarNumber</li>
     <li><strong>Email:</strong> @Model.user.email</li>
-    @if (@Model.user.phone!=null)
+    @if (Model.user?.phone != null && Model.user.phone.Count >= 2)
     {
-        @foreach (Phone phone in @Model.user.phone)
-        {
-            <li><strong>@phone.phoneType  Phone:</strong> @phone.phoneNumber</li>
-        }
+        <ul>
+            <li><strong>Primary Phone:</strong> @Model.user.phone[0].phoneNumber</li>
+            <li><strong>Secondary Phone:</strong> @Model.user.phone[1].phoneNumber</li>
+        </ul>
     }
-   
+    else if (Model.user?.phone != null && Model.user.phone.Count == 1)
+    {
+        <ul>
+            <li><strong>Primary Phone No:</strong> @Model.user.phone[0].phoneNumber</li>
+            <li><strong>Secondary Phone No:</strong> Not available</li>
+        </ul>
+    }
+    else
+    {
+        <p>No phone numbers available.</p>
+    }
+
+
     <li><strong>PAN:</strong> @Model.user.panCardNo</li>
     <li><strong>Passport:</strong> @Model.user.passportNo</li>
   

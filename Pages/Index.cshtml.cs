@@ -1,10 +1,10 @@
-﻿    using DemoASPApp.model;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using System.Text.Json;
-    using UserManagement.Department;
-    using UserManagement.User;
+﻿using DemoASPApp.model;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
+using UserManagement.Department;
+using UserManagement.Model.User;
 
 namespace DemoASPApp.Pages
 {

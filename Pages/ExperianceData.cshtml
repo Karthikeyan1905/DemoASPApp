@@ -1,5 +1,6 @@
 ﻿@page
 @model DemoASPApp.Pages.UserExperienceModel
+@using UserManagement.Model.User
 @using UserManagement.User;
 @{
     Layout = "_MyLayout";
@@ -7,11 +8,9 @@
 
 <h2>User Experience Details</h2>
 
-@if (Model.user != null && Model.user.experiance != null && Model.user.experiance.Count > 0)
+
+@if (Model.HasValidExperience(Model.user))
 {
-     
-    
-        
         @foreach (Company company in Model.user.experiance)
         {
         <div class="company-card">

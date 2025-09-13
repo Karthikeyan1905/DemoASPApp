@@ -1,8 +1,13 @@
 using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text.Json;
-using UserManagement.User;
+using System.Xml.Linq;
+using UserManagement.Department;
+using UserManagement.Model.User;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace DemoASPApp.Pages
@@ -118,15 +123,16 @@ namespace DemoASPApp.Pages
             List<Phone> phones = new List<Phone>();
             var form = Request.Form;
 
-            
 
             for (int i = 1; i <= 2; i++)
             {
-                long phone = long.TryParse(form[("phoneNumber_"+i.ToString())], out var parsedPhone) ? parsedPhone : 0;
-               
-                phones.Add(new Phone() { phoneNumber = phone, phoneType = ("Phone" + i.ToString()).ToString() });
+                long phone = long.TryParse(form["phoneNumber_" + i.ToString()], out var parsedPhone) ? parsedPhone : 0;
 
+                string phoneType = i == 1 ? "Primary" : "Secondary";
+
+                phones.Add(new Phone() { phoneNumber = phone, phoneType = phoneType });
             }
+
             return phones;
 
         }
@@ -151,6 +157,7 @@ namespace DemoASPApp.Pages
 
             return companies;
         }
+        
 
         private List<Address> GetAddressesFromCollection()
         {

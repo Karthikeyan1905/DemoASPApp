@@ -217,7 +217,7 @@
     ],
     "Status": "I",
     "CreatedOn": "2025-07-18T13:14:49.4085687+05:30",
-    "UpdatedOn": "2025-07-18T20:03:25.0650935+05:30",
+    "UpdatedOn": "2025-07-21T11:20:33.1942935+05:30",
     "createdBy": 0,
     "updatedBy": 0
   },
@@ -328,7 +328,118 @@
     ],
     "Status": "A",
     "CreatedOn": "2025-07-18T20:02:33.5453481+05:30",
-    "UpdatedOn": "2025-07-18T20:03:18.0354501+05:30",
+    "UpdatedOn": "2025-07-20T11:03:56.9251388+05:30",
+    "createdBy": 0,
+    "updatedBy": 0
+  },
+  {
+    "userRoleID": 0,
+    "loginCredential": {
+      "loginUsername": "sathish",
+      "login_Password": "1234"
+    },
+    "userID": 4,
+    "email": "sarhish123@gmail.com",
+    "userName": "sathish",
+    "fatherName": "qsc",
+    "motherName": "qv",
+    "AadhaarNumber": 846153245123,
+    "panCardNo": "8746538465",
+    "panCardNumber": "8746538465",
+    "HasPanCard": false,
+    "passportNo": "86431246jm",
+    "passportNumber": "86431246jm",
+    "HasPassport": false,
+    "phone": [
+      {
+        "phoneNumber": 21354668453,
+        "phoneType": "Primary"
+      },
+      {
+        "phoneNumber": 645321,
+        "phoneType": "Secondary"
+      }
+    ],
+    "educations": [
+      {
+        "instituteName": "sdqwfv",
+        "instituteAddress": null,
+        "board": "wdvcqs",
+        "courseName": "10th Standard",
+        "percentage": 84,
+        "startYear": 0
+      },
+      {
+        "instituteName": "sxqa",
+        "instituteAddress": null,
+        "board": "qcvew",
+        "courseName": "12th Standard",
+        "percentage": 98,
+        "startYear": 0
+      },
+      {
+        "instituteName": "qdwv",
+        "instituteAddress": "qcvdw ",
+        "board": null,
+        "courseName": "sfd",
+        "percentage": 54,
+        "startYear": 0
+      },
+      {
+        "instituteName": "csa;lkmb n",
+        "instituteAddress": "nacskji",
+        "board": null,
+        "courseName": "jask c",
+        "percentage": 12,
+        "startYear": 0
+      }
+    ],
+    "addresses": [
+      {
+        "addressType": "Permanent",
+        "permDoorNo": "235",
+        "street": "wqdc",
+        "town": "dsqc",
+        "district": "qqwdw",
+        "state": " qdwwqd",
+        "country": " mcdjn",
+        "pincode": 613203
+      },
+      {
+        "addressType": "Current",
+        "permDoorNo": "3",
+        "street": "sac",
+        "town": "Thanjavur",
+        "district": "scad",
+        "state": "sac",
+        "country": "India",
+        "pincode": 451265
+      }
+    ],
+    "HasExperience": false,
+    "experiance": [
+      {
+        "CompanyName": "n hbvgcf",
+        "CompanyAddress": "wqdc",
+        "WorkingExperienceInMonths": 5,
+        "ContactPersonName": " nhvg",
+        "ContactPersonDesignation": "hr",
+        "ContactPersonPhone": "09360551557",
+        "ContactPersonEmail": "karthikeyanofficial05@gmail.com"
+      },
+      {
+        "CompanyName": "mjbhvgcyxd",
+        "CompanyAddress": "wqdc",
+        "WorkingExperienceInMonths": 8,
+        "ContactPersonName": "kjhgfdzs",
+        "ContactPersonDesignation": "kjhgf",
+        "ContactPersonPhone": "09360551557",
+        "ContactPersonEmail": "karthikeyanofficial05@gmail.com"
+      }
+    ],
+    "Status": "P",
+    "CreatedOn": "2025-07-21T21:43:14.6314588+05:30",
+    "UpdatedOn": "0001-01-01T00:00:00",
     "createdBy": 0,
     "updatedBy": 0
   }

@@ -1,7 +1,7 @@
 using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.User;
+using UserManagement.Model.User;
 
 namespace DemoASPApp.Pages
 {
