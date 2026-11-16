@@ -1,43 +1,35 @@
 @page
 @model DemoASPApp.Pages.UserAddressModel
 @using UserManagement.Model.User
-@using UserManagement.User;
+
 @{
     Layout = "_MyLayout";
 }
 
 <h2>User Address Details</h2>
 
-@if (Model.user != null && Model.user.addresses != null && Model.user.addresses.Count > 0)
+@if (Model.addresses != null && Model.addresses.Count > 0)
 {
-    
-        @foreach (Address address in Model.user.addresses)
-        {
-            <div class="company-card">
+    @foreach (var address in Model.addresses)
+    {
+        <div class="company-card">
+            <h5>@address.addressType Address</h5>
             <ul>
-         
-            <li>
-                <strong>Address Type:</strong> @address.addressType<br />
-            </li>
-            <li> <strong>Door No:</strong> @address.permDoorNo<br /></li>
-            <li>  <strong>Street:</strong> @address.street<br /></li>
-            <li>  <strong>Town:</strong> @address.town<br /></li>
-            <li>  <strong>District:</strong> @address.district<br /></li>
-            <li>   <strong>State:</strong> @address.state<br /></li>
-            <li>   <strong>Country:</strong> @address.country<br /></li>
-            <li>
-                <strong>Pincode:</strong> @address.pincode
-            </li>
-        
+                <li><strong>Door No:</strong> @address.permDoorNo</li>
+                <li><strong>Street:</strong> @address.street</li>
+                <li><strong>Town:</strong> @address.town</li>
+                <li><strong>District:</strong> @address.district</li>
+                <li><strong>State:</strong> @address.state</li>
+                <li><strong>Country:</strong> @address.country</li>
+                <li><strong>Pincode:</strong> @address.pincode</li>
             </ul>
-            </div>
-        }
-        <li class="nav-item" style="list-style:none">
-            <a class="btn btn-primary" href="/UserData?id=@Model.user.userID">User Info</a>
-            <a class="btn btn-primary" href="/ExperianceData?id=@Model.user.userID">Experiance</a>
+        </div>
+    }
 
-        </li>
-   
+    <li class="nav-item" style="list-style:none">
+        <a class="btn btn-primary" href="/UserData?id=@Request.Query["id"]">User Info</a>
+        <a class="btn btn-primary" href="/ExperianceData?id=@Request.Query["id"]">Experience</a>
+    </li>
 }
 else
 {

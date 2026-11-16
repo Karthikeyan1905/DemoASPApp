@@ -10,19 +10,19 @@ namespace DemoASPApp.Pages
 
         [BindProperty]
         public UserInfo user { get; set; }
-        public void OnGet()
-        {
-            string id = Request.Query["id"];
+        //public void OnGet()
+        //{
+        //    string id = Request.Query["id"];
 
-            if (!string.IsNullOrEmpty(id))
-            {
-                user = Common.users.FirstOrDefault(u => u.userID.ToString().Equals(id));
-            }
-            else if (CurrentUser != null)
-            {
-                user = Common.users.FirstOrDefault(u => u.userID == CurrentUser.userID);
-            }
-        }
+        //    if (!string.IsNullOrEmpty(id))
+        //    {
+        //        user = Common.users.FirstOrDefault(u => u.userID.ToString().Equals(id));
+        //    }
+        //    else if (CurrentUser != null)
+        //    {
+        //        user = Common.users.FirstOrDefault(u => u.userID == CurrentUser.userID);
+        //    }
+        //}
     }
     
 }

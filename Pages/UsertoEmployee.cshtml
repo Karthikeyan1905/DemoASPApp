@@ -12,17 +12,37 @@
     <p><strong>Name:</strong> @Model.user.userName</p>
 
     <form method="post">
-        <label>Department:</label>
-        <input type="text" name="department" required />
+        <input type="hidden" name="userID" value="@Model.user.userID" />
 
-        <label>Designation:</label>
-        <input type="text" name="designation" required />
-
-        <input type="hidden" name="userID" value="@Model.user.userID" /><br /><br />
+        <label for="department">Department:</label>
+        <select name="departmentID" required>
+            @foreach (var dept in Model.DepartmentList)
+            {
+                <option value="@dept.deptID">@dept.deptName</option>
+            }
+        </select>
+        <br />
+        <label for="designation">Designation:</label>
+        <select name="designationID" required>
+            @foreach (var desig in Model.DesignationList)
+            {
+                <option value="@desig.designationID">@desig.designationName</option>
+            }
+        </select>
+        <br />
+        <label for="team">Team:</label>
+        <select name="teamID" required>
+            @foreach (var team in Model.TeamList)
+            {
+                <option value="@team.teamID">@team.teamName</option>
+            }
+        </select>
+        <br />
         <button type="submit">Promote to Employee</button>
     </form>
+
 }
 else
 {
-    <p style="color:red">User not found.</p>
+    <p class="text-danger">User not found.</p>
 }

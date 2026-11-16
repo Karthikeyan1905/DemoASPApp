@@ -1,0 +1,23 @@
+﻿@page "{teamID:int}"
+@model AddStageModel
+@{
+    ViewData["Title"] = "Add Stage to Team";
+}
+
+<h1>Add Stage to Team</h1>
+
+<p><strong>Team Name:</strong> @Model.TeamName</p>
+
+<form method="post" asp-route-teamID="@Model.TeamID">
+    <label>Select Stage:</label>
+    <select name="SelectedStageID">
+        <option value="">-- Select Stage --</option>
+        @foreach (var stage in Model.stages)
+        {
+            <option value="@stage.stageid">@stage.stagename</option>
+        }
+    </select>
+
+    <button type="submit">Add Stage</button>
+</form>
+

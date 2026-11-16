@@ -1,68 +1,72 @@
 ﻿using DemoASPApp.model;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
-using UserManagement.Department;
 using UserManagement.Model.User;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DemoASPApp.Pages
 {
 
     public class IndexModel : PageModel
     {
-        public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
+        //public bool isEmployee { get { return Request.Form["isEmployee"].Equals("on"); } }
         public void OnGet()
         {
-            Common.LoadRegisterUsers();
-            Common.LoadRegisteredEmployees();
-
+            
         }
 
-        public IActionResult OnPost(string uname, string psw)
+        public async Task<IActionResult> OnPostAsync(string uname, string psw)
         {
             if (!string.IsNullOrWhiteSpace(uname) && !string.IsNullOrWhiteSpace(psw))
             {
                 UserInfo user = null;
+                var httpClient = new HttpClient();
+                var connector = new HttpClientConnector(httpClient);
 
-                foreach (var u in Common.users)
+                var queryParams = new Dictionary<string, string>
                 {
-                    if (u.loginCredential != null &&
-                    u.loginCredential.loginUsername == uname && u.loginCredential.loginPassword == psw)
+                    { "status", "A" } 
+                };
+
+                var credentials = await connector.GetAsync<List<LoginCredential>>("http://localhost:5112/LoginCredential/Select", queryParams);
+
+                var matchedCredential = credentials?.FirstOrDefault(u =>
+                    u.loginUsername == uname && u.login_Password == psw);
+
+                if (matchedCredential != null)
+                {
+                    if (matchedCredential.status == "A")
                     {
-                        if (u.Status == "A")
-                        {
-                            user = u;
-                            break;
-                        }
-                        else if (u.Status == "P")
-                        {
-                            ViewData["EMsg"] = "User is Pending Please Wait for Approval.";
-                            return Page();
-                        }
-                        else
-                        {
-                            ViewData["EMsg"] = "User is InActive Please Wait for Approval.";
-                            return Page();
-                        }
+                        user = matchedCredential.user;
                     }
-
-                }
-                    if (user != null)
+                    else if (matchedCredential.status == "IA")
                     {
-
-                        Common.AddLoginRecord(user.userID ?? 0);
-                        Common.CurrentUser = user;
-                        TempData["sessionUser"] = JsonSerializer.Serialize(user);
-                        return RedirectToPage("Index1", new { un = user.userName, isEmployee = isEmployee });
+                        ViewData["EMsg"] = "User is InActive. Please contact admin.";
+                        return Page();
                     }
-
-                    ViewData["EMsg"] = "Username not found. Please register first.";
-                    return Page();
+                    else
+                    {
+                        ViewData["EMsg"] = "User is Pending. Please wait for Approve.";
+                        return Page();
+                    }
                 }
 
-                ViewData["EMsg"] = "Username is required.";
+                if (user != null)
+                {
+                    TempData["sessionUser"] = JsonSerializer.Serialize(user);
+                    return RedirectToPage("Index1", new { un = user.userName });
+                }
+
+                ViewData["EMsg"] = "Username not found. Please register first.";
                 return Page();
             }
+
+            ViewData["EMsg"] = "Username and Password is required.";
+            return Page();
         }
+    }
     }

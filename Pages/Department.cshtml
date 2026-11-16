@@ -1,17 +1,29 @@
-﻿@page 
+﻿@page
 @model DemoASPApp.Pages.DepartmentModel
 @{
     Layout = "_MyLayout";
 }
 
-<h1>Department</h1>
+<h2>Department Employee Details</h2>
 
-@if (Model.Employee == null)
+@if (Model.EmployeeList != null && Model.EmployeeList.Any())
 {
-    <p style="color:red;">Employee not found for the given user.</p>
+    <div class="row">
+        @foreach (var emp in Model.EmployeeList)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="border rounded p-3 shadow-sm">
+                    <p><strong>Employee ID:</strong> @emp.employeeID</p>
+                    <p><strong>User ID:</strong> @emp.user?.userID</p>
+                    <p><strong>User Name:</strong> @emp.user?.userName</p>
+                    <p><strong>Department ID:</strong> @emp.department?.deptID</p>
+                    <p><strong>Department Name:</strong> @emp.department?.deptName</p>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
-    <p><strong>Department:</strong> @Model.Employee.Department.Name</p>
-    <p><strong>Designation:</strong> @Model.Employee.Designation.Name</p>
+    <p class="text-muted">No employee records found for this department.</p>
 }

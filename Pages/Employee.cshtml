@@ -4,14 +4,27 @@
     Layout = "_MyLayout";
 }
 
-<h1>Employee</h1>
+<h2>Employee Directory</h2>
 
-@if (Model.user != null)
+@if (Model.EmployeeList != null && Model.EmployeeList.Any())
 {
-    <p><strong>User ID:</strong> @Model.user.userID</p>
-    <p><strong>User Name:</strong> @Model.user.userName</p>
+    <div class="row">
+        @foreach (var emp in Model.EmployeeList)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Employee ID: @emp.employeeID</h5>
+                        <p><strong>Name:</strong> @emp.user?.userName</p>
+                        <p><strong>Department:</strong> @emp.department?.deptName</p>
+                        <p><strong>Designation:</strong> @emp.designation?.designationName</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
-    <p>User not found.</p>
+    <p class="text-muted">No employees found.</p>
 }

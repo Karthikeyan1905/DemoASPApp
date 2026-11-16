@@ -1,6 +1,8 @@
+using DemoASPApp.model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DemoASPApp.model;
+using UserManagement.Model.Department;
+using UserManagement.Model.Team;
 using UserManagement.Model.User;
 
 namespace DemoASPApp.Pages
@@ -10,10 +12,38 @@ namespace DemoASPApp.Pages
         [BindProperty]
         public UserInfo user { get; set; }
 
-        public void OnGet()
+        public List<TeamUser> teamUser { get; set; } = new List<TeamUser>();
+
+        private readonly HttpClientConnector _httpClientConnector;
+
+        public TeamUserModel(HttpClientConnector httpClientConnector)
+        {
+            _httpClientConnector = httpClientConnector;
+        }
+
+        public async Task<IActionResult> OnGetAsync()
         {
             string id = Request.Query["id"];
-            user = Common.users.FirstOrDefault(u => u.userID.ToString() == id);
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                var queryParams = new Dictionary<string, string> { { "userID", id } };
+
+               
+                var users = await _httpClientConnector.GetAsync<List<UserInfo>>("http://localhost:5112/UserInfo/Select", queryParams);
+                user = users?.FirstOrDefault();
+
+                teamUser = await _httpClientConnector.GetAsync<List<TeamUser>>("http://localhost:5112/TeamUser/Select", queryParams);
+                var employees = await _httpClientConnector.GetAsync<List<Employee>>("http://localhost:5112/Employee/Select", queryParams);
+                var isPromotedUser = employees.Any();
+
+                ViewData["UserIdForMenu"] = user.userID.ToString();
+                ViewData["IsPromotedUser"] = isPromotedUser;
+
+                IsPromoted = isPromotedUser;
+            }
+            await LoadPromotionStatus(_httpClientConnector);
+            return Page();
         }
     }
 }

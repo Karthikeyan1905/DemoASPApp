@@ -34,8 +34,8 @@ namespace DemoASPApp.model
 
             var login = new LoginHistory
             {
-                LoginID = DateTime.Now.Ticks,
-                UserID = userId,
+                loginID = DateTime.Now.Ticks,
+                userID = userId,
                 status = "Active",
                 loginTime = DateTime.Now,
                 loginOut = null
@@ -50,7 +50,7 @@ namespace DemoASPApp.model
             LoadLoginHistory();
 
             var lastLogin = loginRecords
-            .Where(r => r.UserID == userId && r.status.Equals("Active", StringComparison.OrdinalIgnoreCase))
+            .Where(r => r.userID == userId && r.status.Equals("Active", StringComparison.OrdinalIgnoreCase))
             .OrderByDescending(r => r.loginTime)
             .FirstOrDefault();
 

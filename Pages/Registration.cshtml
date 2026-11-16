@@ -1,5 +1,5 @@
 ﻿@page
-@model DemoASPApp.Pages.InfoModel
+@model RegistrationModel
 @{
     ViewData["Title"] = "This my Page";
     Layout = "_RegisterView";
@@ -12,11 +12,14 @@
         <hr>
         <label for="loginUsername"><b>Login Username</b></label>
         <input type="text" placeholder="Enter Username" name="loginUsername" id="loginUsername" required />
+
         @if (ViewData["EMsg"] != null)
         {
             <div style="color:red; margin-top:10px;">@ViewData["EMsg"]</div>
         }
-       
+        <label for="loginPassword"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="loginPassword" id="loginPassword" required />
+
         <label for="userName"><b>Name</b></label>
         <input type="text" placeholder="Enter Name" name="userName" id="userName" required>
 
@@ -54,84 +57,102 @@
             <input type="text" placeholder="Enter Passport Number" name="passportNo" id="passportNo"><br>
         </div>
 
-        <!-- Phone Numbers -->
-        <label for="phoneNumber"><b>Phone Number</b></label><br>
-        <input type="number" placeholder="Enter Phone Number" name="phoneNumber_1" id="phoneNumber" required><br><br>
+        <fieldset style="margin-top: 20px;">
+            <legend><b>Phone Details</b></legend>
 
-        <label for="phoneNumber2"><b>Phone Number 2</b></label><br>
-        <input type="number" placeholder="Enter Second Phone Number" name="phoneNumber_2" id="phoneNumber2"><br>
+            <!-- Primary Phone -->
+            <label for="primaryPhoneType"><b>Phone Type</b></label>
+            <input type="text" id="primaryPhoneType" name="primaryPhoneType" value="Primary" readonly>
 
+            <label for="primaryPhone"><b>Phone Number</b></label>
+            <input type="tel" id="primaryPhone" name="primaryPhone" placeholder="Enter Primary Phone Number" required>
+
+            <!-- Secondary Phone -->
+            <label for="secondaryPhoneType"><b>Phone Type</b></label>
+            <input type="text" id="secondaryPhoneType" name="secondaryPhoneType" value="Secondary" readonly>
+
+            <label for="secondaryPhone"><b>Phone Number</b></label>
+            <input type="tel" id="secondaryPhone" name="secondaryPhone" placeholder="Enter Secondary Phone Number" required>
+        </fieldset>
 
         <!-- Permanent Address -->
-        <fieldset>
+        <fieldset style="margin-top: 20px;">
             <legend><b>Permanent Address</b></legend>
 
+            <label for="addressType"><b>Address Type</b></label>
+            <input type="text" id="addressType" name="addressType" value="Permanent" readonly>
+
             <label for="permDoorNo"><b>Door No</b></label>
-            <input type="text" id="permDoorNo" name="permDoorNo" placeholder="Enter Door No" required>
+            <input type="text" id="permDoorNo" name="permDoorNo" placeholder="Enter Door Number" required>
 
-            <label for="permStreet"><b>Street</b></label>
-            <input type="text" id="permStreet" name="permStreet" placeholder="Enter Street" required>
+            <label for="street"><b>Street</b></label>
+            <input type="text" id="street" name="street" placeholder="Enter Street Name" required>
 
-            <label for="permCity"><b>Town/City</b></label>
-            <input type="text" id="permCity" name="permCity" placeholder="Enter Town/City" required>
+            <label for="town"><b>Town</b></label>
+            <input type="text" id="town" name="town" placeholder="Enter Town" required>
 
-            <label for="permDistrict"><b>District</b></label>
-            <input type="text" id="permDistrict" name="permDistrict" placeholder="Enter District" required>
+            <label for="district"><b>District</b></label>
+            <input type="text" id="district" name="district" placeholder="Enter District" required>
 
-            <label for="permState"><b>State</b></label>
-            <input type="text" id="permState" name="permState" placeholder="Enter State" required>
+            <label for="state"><b>State</b></label>
+            <input type="text" id="state" name="state" placeholder="Enter State" required>
 
-            <label for="permCountry"><b>Country</b></label>
-            <input type="text" id="permCountry" name="permCountry" placeholder="Enter Country" required>
+            <label for="country"><b>Country</b></label>
+            <input type="text" id="country" name="country" placeholder="Enter Country" required>
 
-            <label for="permPincode"><b>Pincode</b></label>
-            <input type="text" id="permPincode" name="permPincode" placeholder="Enter Pincode" required>
+            <label for="pincode"><b>Pincode</b></label>
+            <input type="number" id="pincode" name="pincode" placeholder="Enter Pincode" required>
         </fieldset>
+
 
         <!-- Current Address -->
         <fieldset style="margin-top: 20px;">
-            <legend><b>Current Address</b></legend>
+            <legend><b>Secondary Address</b></legend>
 
-            <label for="currDoorNo"><b>Door No</b></label>
-            <input type="text" id="currDoorNo" name="currDoorNo" placeholder="Enter Door No" required>
+            <label for="secondaryAddressType"><b>Address Type</b></label>
+            <input type="text" id="secondaryAddressType" name="secondaryAddressType" value="Secondary" readonly>
 
-            <label for="currStreet"><b>Street</b></label>
-            <input type="text" id="currStreet" name="currStreet" placeholder="Enter Street" required>
+            <label for="secondaryDoorNo"><b>Door No</b></label>
+            <input type="text" id="secondaryDoorNo" name="secondaryDoorNo" placeholder="Enter Door Number" required>
 
-            <label for="currCity"><b>Town/City</b></label>
-            <input type="text" id="currCity" name="currCity" placeholder="Enter Town/City" required>
+            <label for="secondaryStreet"><b>Street</b></label>
+            <input type="text" id="secondaryStreet" name="secondaryStreet" placeholder="Enter Street Name" required>
 
-            <label for="currDistrict"><b>District</b></label>
-            <input type="text" id="currDistrict" name="currDistrict" placeholder="Enter District" required>
+            <label for="secondaryTown"><b>Town</b></label>
+            <input type="text" id="secondaryTown" name="secondaryTown" placeholder="Enter Town" required>
 
-            <label for="currState"><b>State</b></label>
-            <input type="text" id="currState" name="currState" placeholder="Enter State" required>
+            <label for="secondaryDistrict"><b>District</b></label>
+            <input type="text" id="secondaryDistrict" name="secondaryDistrict" placeholder="Enter District" required>
 
-            <label for="currCountry"><b>Country</b></label>
-            <input type="text" id="currCountry" name="currCountry" placeholder="Enter Country" required>
+            <label for="secondaryState"><b>State</b></label>
+            <input type="text" id="secondaryState" name="secondaryState" placeholder="Enter State" required>
 
-            <label for="currPincode"><b>Pincode</b></label>
-            <input type="text" id="currPincode" name="currPincode" placeholder="Enter Pincode" required>
+            <label for="secondaryCountry"><b>Country</b></label>
+            <input type="text" id="secondaryCountry" name="secondaryCountry" placeholder="Enter Country" required>
+
+            <label for="secondaryPincode"><b>Pincode</b></label>
+            <input type="number" id="secondaryPincode" name="secondaryPincode" placeholder="Enter Pincode" required>
         </fieldset>
+
 
         <!-- 10th Standard -->
         <fieldset>
             <legend><b>10th Standard</b></legend>
 
             <label for="tenthCollege"><b>School Name</b></label>
-            <input type="text" id="tenthCollege" name="tenthCollege" placeholder="Enter School Name" required>
+            <input type="text" id="tenthCollege" name="tenthCollege" required>
 
             <label for="tenthAddress"><b>School Address</b></label>
-            <input type="text" id="tenthAddress" name="tenthAddress" placeholder="Enter School Address" required>
+            <input type="text" id="tenthAddress" name="tenthAddress" required>
 
             <label for="tenthBoard"><b>Board</b></label>
-            <input type="text" id="tenthBoard" name="tenthBoard" placeholder="Enter Board Name" required>
+            <input type="text" id="tenthBoard" name="tenthBoard" required>
 
             <label for="tenthPercentage"><b>Percentage</b></label>
-            <input type="text" id="tenthPercentage" name="tenthPercentage" placeholder="Enter Percentage" required>
+            <input type="text" id="tenthPercentage" name="tenthPercentage" required>
 
             <label for="tenthStartYear"><b>Start Year</b></label>
-            <input type="text" id="tenthStartYear" name="tenthStartYear" placeholder="Enter Start Year" required>
+            <input type="text" id="tenthStartYear" name="tenthStartYear" required>
 
             <input type="hidden" name="tenthCourse" value="10th Standard" />
         </fieldset>
@@ -141,19 +162,19 @@
             <legend><b>12th Standard</b></legend>
 
             <label for="twelfthCollege"><b>School Name</b></label>
-            <input type="text" id="twelfthCollege" name="twelfthCollege" placeholder="Enter School Name" required>
+            <input type="text" id="twelfthCollege" name="twelfthCollege" required>
 
             <label for="twelfthAddress"><b>School Address</b></label>
-            <input type="text" id="twelfthAddress" name="twelfthAddress" placeholder="Enter School Address" required>
+            <input type="text" id="twelfthAddress" name="twelfthAddress" required>
 
             <label for="twelfthBoard"><b>Board</b></label>
-            <input type="text" id="twelfthBoard" name="twelfthBoard" placeholder="Enter Board Name" required>
+            <input type="text" id="twelfthBoard" name="twelfthBoard" required>
 
             <label for="twelfthPercentage"><b>Percentage</b></label>
-            <input type="text" id="twelfthPercentage" name="twelfthPercentage" placeholder="Enter Percentage" required>
+            <input type="text" id="twelfthPercentage" name="twelfthPercentage" required>
 
             <label for="twelfthStartYear"><b>Start Year</b></label>
-            <input type="text" id="twelfthStartYear" name="twelfthStartYear" placeholder="Enter Start Year" required>
+            <input type="text" id="twelfthStartYear" name="twelfthStartYear" required>
 
             <input type="hidden" name="twelfthCourse" value="12th Standard" />
         </fieldset>
@@ -163,22 +184,22 @@
             <legend><b>Bachelor's Degree</b></legend>
 
             <label for="bachelorCollege"><b>College Name</b></label>
-            <input type="text" id="bachelorCollege" name="bachelorCollege" placeholder="Enter College Name" required>
+            <input type="text" id="bachelorCollege" name="bachelorCollege" required>
 
             <label for="bachelorAddress"><b>Institute Address</b></label>
-            <input type="text" id="bachelorAddress" name="bachelorAddress" placeholder="Enter Address" required>
+            <input type="text" id="bachelorAddress" name="bachelorAddress" required>
 
             <label for="bachelorUniversity"><b>University Name</b></label>
-            <input type="text" id="bachelorUniversity" name="bachelorUniversity" placeholder="Enter University Name" required>
+            <input type="text" id="bachelorUniversity" name="bachelorUniversity" required>
 
             <label for="bachelorCourse"><b>Course Name</b></label>
-            <input type="text" id="bachelorCourse" name="bachelorCourse" placeholder="Enter Course Name" required>
+            <input type="text" id="bachelorCourse" name="bachelorCourse" required>
 
             <label for="bachelorPercentage"><b>Percentage</b></label>
-            <input type="text" id="bachelorPercentage" name="bachelorPercentage" placeholder="Enter Percentage" required>
+            <input type="text" id="bachelorPercentage" name="bachelorPercentage" required>
 
             <label for="bachelorStartYear"><b>Start Year</b></label>
-            <input type="text" id="bachelorStartYear" name="bachelorStartYear" placeholder="Enter Start Year" required>
+            <input type="text" id="bachelorStartYear" name="bachelorStartYear" required>
         </fieldset>
 
         <!-- Master's Degree -->
@@ -186,22 +207,22 @@
             <legend><b>Master's Degree</b></legend>
 
             <label for="masterCollege"><b>College Name</b></label>
-            <input type="text" id="masterCollege" name="masterCollege" placeholder="Enter College Name" required>
+            <input type="text" id="masterCollege" name="masterCollege" required>
 
             <label for="masterAddress"><b>Institute Address</b></label>
-            <input type="text" id="masterAddress" name="masterAddress" placeholder="Enter Address" required>
+            <input type="text" id="masterAddress" name="masterAddress" required>
 
             <label for="masterUniversity"><b>University Name</b></label>
-            <input type="text" id="masterUniversity" name="masterUniversity" placeholder="Enter University Name" required>
+            <input type="text" id="masterUniversity" name="masterUniversity" required>
 
             <label for="masterCourse"><b>Course Name</b></label>
-            <input type="text" id="masterCourse" name="masterCourse" placeholder="Enter Course Name" required>
+            <input type="text" id="masterCourse" name="masterCourse" required>
 
             <label for="masterPercentage"><b>Percentage</b></label>
-            <input type="text" id="masterPercentage" name="masterPercentage" placeholder="Enter Percentage" required>
+            <input type="text" id="masterPercentage" name="masterPercentage" required>
 
             <label for="masterStartYear"><b>Start Year</b></label>
-            <input type="text" id="masterStartYear" name="masterStartYear" placeholder="Enter Start Year" required>
+            <input type="text" id="masterStartYear" name="masterStartYear" required>
         </fieldset>
 
 
@@ -211,35 +232,32 @@
         <input type="radio" name="hasExperience" value="yes" onclick="toggleExperience(true)"> Yes
         <input type="radio" name="hasExperience" value="no" onclick="toggleExperience(false)"> No
         </div>
-        <!-- Experience Section (Initially Hidden) -->
         <div id="experienceSection" style="display: none; margin-top: 20px;">
 
             <!-- Company 1 -->
-            <fieldset>
+            <fieldset style="margin-top: 20px;">
                 <legend><b>Company 1</b></legend>
 
-                <label for="company1Name"><b>Company Name</b></label>
-                <input type="text" id="company1Name" name="company1Name" placeholder="Enter Company Name">
+                <label for="companyName"><b>Company Name</b></label>
+                <input type="text" id="companyName" name="companyName" placeholder="Enter Company Name" required>
 
-                <label for="company1Address"><b>Company Address</b></label>
-                <input type="text" id="company1Address" name="company1Address" placeholder="Enter Company Address">
+                <label for="companyAddress"><b>Company Address</b></label>
+                <input type="text" id="companyAddress" name="companyAddress" placeholder="Enter Company Address" required>
 
-                <label for="company1Duration"><b>Working Experience (in months)</b></label>
-                <input type="number" id="company1Duration" name="company1Duration" placeholder="Enter Months Worked">
+                <label for="workingExperienceInMonths"><b>Experience (in Months)</b></label>
+                <input type="number" id="workingExperienceInMonths" name="workingExperienceInMonths" placeholder="Enter Duration in Months" required>
 
-                <label for="company1ContactName"><b>Contact Person Name</b></label>
-                <input type="text" id="company1ContactName" name="company1ContactName" placeholder="Enter Contact Person Name">
+                <label for="contactPersonName"><b>Contact Person Name</b></label>
+                <input type="text" id="contactPersonName" name="contactPersonName" placeholder="Enter Contact Person Name" required>
 
-                <label for="company1Designation"><b>Contact Person Designation</b></label>
-                <input type="text" id="company1Designation" name="company1Designation" placeholder="Enter Designation">
+                <label for="contactPersonDesignation"><b>Contact Person Designation</b></label>
+                <input type="text" id="contactPersonDesignation" name="contactPersonDesignation" placeholder="Enter Designation" required>
 
-                <label for="company1Phone"><b>Contact Phone</b></label>
-                <input type="tel" id="company1Phone" name="company1Phone" placeholder="Enter Phone Number">
-                <br />
-                <br />
+                <label for="contactPersonPhone"><b>Contact Person Phone</b></label>
+                <input type="tel" id="contactPersonPhone" name="contactPersonPhone" placeholder="Enter Phone Number" required>
 
-                <label for="company1Email"><b>Contact Email</b></label>
-                <input type="email" id="company1Email" name="company1Email" placeholder="Enter Email ID">
+                <label for="contactPersonEmail"><b>Contact Person Email</b></label>
+                <input type="email" id="contactPersonEmail" name="contactPersonEmail" placeholder="Enter Email Address" required>
             </fieldset>
 
             <!-- Company 2 -->
@@ -252,8 +270,8 @@
                 <label for="company2Address"><b>Company Address</b></label>
                 <input type="text" id="company2Address" name="company2Address" placeholder="Enter Company Address">
 
-                <label for="company2Duration"><b>Working Experience (in months)</b></label>
-                <input type="number" id="company2Duration" name="company2Duration" placeholder="Enter Months Worked">
+                <label for="company2Duration"><b>Experience (in Months)</b></label>
+                <input type="number" id="company2Duration" name="company2Duration" placeholder="Enter Duration in Months">
 
                 <label for="company2ContactName"><b>Contact Person Name</b></label>
                 <input type="text" id="company2ContactName" name="company2ContactName" placeholder="Enter Contact Person Name">
@@ -261,22 +279,19 @@
                 <label for="company2Designation"><b>Contact Person Designation</b></label>
                 <input type="text" id="company2Designation" name="company2Designation" placeholder="Enter Designation">
 
-                <label for="company2Phone"><b>Contact Phone</b></label>
+                <label for="company2Phone"><b>Contact Person Phone</b></label>
                 <input type="tel" id="company2Phone" name="company2Phone" placeholder="Enter Phone Number">
-                <br />
-                <br />
 
-                <label for="company2Email"><b>Contact Email</b></label>
-                <input type="email" id="company2Email" name="company2Email" placeholder="Enter Email ID">
+                <label for="company2Email"><b>Contact Person Email</b></label>
+                <input type="email" id="company2Email" name="company2Email" placeholder="Enter Email Address">
             </fieldset>
         </div>
-
         <hr>
       
 
-        <button type="submit" onclick="return validateExperienceAndEducation()" class="registerbtn">Register</button>
+        <button type="submit" method= "post" onclick="return validateExperienceAndEducation();" class="registerbtn">Register</button>
     </div>
-
+</form>
     @{
         var sessionUserJson = TempData.Peek("sessionUser") as string;
         bool isLoggedIn = !string.IsNullOrEmpty(sessionUserJson);
@@ -288,56 +303,53 @@
             <p>Already have an account? <a href="/Index">Sign in</a>.</p>
         </div>
     }
-</form>
+
 <script>
-    function togglePanField(show) 
-    {
-        document.getElementById("panCardDiv").style.display = show ? "block" : "none";
-    }
-    function togglePassportField(show)
-    {
-        document.getElementById("passportDiv").style.display = show ? "block" : "none"; 
-    }
-    function togglePanField(show) 
-    {
-        const panDiv = document.getElementById("panCardDiv"); panDiv.style.display = show ? "block" : "none"; 
-    }
-    function togglePanField(show) 
-    {
-        document.getElementById("panCardDiv").style.display = show ? "block" : "none";
-    }
-    function togglePassportField(show) 
-    {
-        document.getElementById("passportDiv").style.display = show ? "block" : "none";
-    }
-    function toggleExperience(hasExp) 
-    {
-        document.getElementById("experienceSection").style.display = hasExp ? "block" : "none"; 
+    // Toggle PAN card field visibility
+    function togglePanField(show) {
+        const panDiv = document.getElementById("panCardDiv");
+        if (panDiv) {
+            panDiv.style.display = show ? "block" : "none";
+        }
     }
 
-       
-</script>
-<script>
+    // Toggle Passport field visibility
+    function togglePassportField(show) {
+        const passportDiv = document.getElementById("passportDiv");
+        if (passportDiv) {
+            passportDiv.style.display = show ? "block" : "none";
+        }
+    }
+
+    // Toggle Experience section visibility
+    function toggleExperience(hasExp) {
+        const experienceSection = document.getElementById("experienceSection");
+        if (experienceSection) {
+            experienceSection.style.display = hasExp ? "block" : "none";
+        }
+    }
+
+    // Validate Experience and Education fields before form submission
     function validateExperienceAndEducation() {
         let valid = true;
 
-        // Experience entries
+        // Validate Experience entries
         for (let i = 1; i <= 2; i++) {
             const companyName = document.querySelector(`[name="company${i}Name"]`);
             const duration = document.querySelector(`[name="company${i}Duration"]`);
             const designation = document.querySelector(`[name="company${i}Designation"]`);
 
             [companyName, duration, designation].forEach(field => {
-                if (!field || field.value.trim() === "") {
+                if (field && field.value.trim() === "") {
                     valid = false;
                     field.style.border = "2px solid red";
-                } else {
+                } else if (field) {
                     field.style.border = "";
                 }
             });
         }
 
-        // Education entries
+        // Validate Education entries
         const educationGroups = ["tenth", "twelfth", "bachelor", "master"];
         educationGroups.forEach(prefix => {
             const name = document.querySelector(`[name="${prefix}College"]`);
@@ -345,12 +357,11 @@
             const percentage = document.querySelector(`[name="${prefix}Percentage"]`);
             const year = document.querySelector(`[name="${prefix}StartYear"]`);
 
-            const requiredFields = [name, course, percentage, year];
-            requiredFields.forEach(field => {
-                if (!field || field.value.trim() === "") {
+            [name, course, percentage, year].forEach(field => {
+                if (field && field.value.trim() === "") {
                     valid = false;
                     field.style.border = "2px solid red";
-                } else {
+                } else if (field) {
                     field.style.border = "";
                 }
             });
@@ -358,11 +369,11 @@
 
         if (!valid) {
             alert("Please fill in all required Experience and Education fields before submitting.");
-            return false;
         }
 
-        return true;
+        return valid;
     }
 </script>
+
 
 

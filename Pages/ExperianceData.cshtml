@@ -1,43 +1,36 @@
 ﻿@page
 @model DemoASPApp.Pages.UserExperienceModel
 @using UserManagement.Model.User
-@using UserManagement.User;
+
 @{
     Layout = "_MyLayout";
 }
 
 <h2>User Experience Details</h2>
 
-
-@if (Model.HasValidExperience(Model.user))
+@if (Model.experience != null && Model.experience.Count > 0)
 {
-        @foreach (Company company in Model.user.experiance)
-        {
+    @foreach (var company in Model.experience)
+    {
         <div class="company-card">
+            <h5>@company.companyName (@company.workingexperainceinMonths months)</h5>
             <ul>
-            <li>
-                <strong>Company Name:</strong> @company.CompanyName<br />
-            </li>
-            <li> <strong>Company Address:</strong> @company.CompanyAddress<br /></li>
-            <li>
-                <strong>Experience (Months):</strong> @company.WorkingExperienceInMonths
-            <br /></li>
-            <li> <strong>Contact Person:</strong> @company.ContactPersonName<br /></li>
-            <li> <strong>Designation:</strong> @company.ContactPersonDesignation<br /></li>
-            <li><strong>Phone:</strong> @company.ContactPersonPhone<br /></li>
-            <li> <strong>Email:</strong> @company.ContactPersonEmail</li>
-        </ul>
+                <li><strong>Company Address:</strong> @company.companyAddress</li>
+                <li><strong>Contact Person:</strong> @company.contactPersonName</li>
+                <li><strong>Designation:</strong> @company.contactPersonDesignation</li>
+                <li><strong>Phone:</strong> @company.contactPersonPhone</li>
+                <li><strong>Contact Person Email:</strong> @company.contactPersonEmail</li>
+            </ul>
         </div>
-        }
-    
-        <li class="nav-item" style="list-style:none">
-            <a class="btn btn-primary" href="/Address?id=@Model.user.userID">Address</a>
-            <a class="btn btn-primary" href="/Education?id=@Model.user.userID">Education</a>
-        </li>
-    
+    }
 
+    <li class="nav-item" style="list-style:none">
+        <a class="btn btn-primary" href="/Address?id=@Model.user.userID">Address</a>
+        <a class="btn btn-primary" href="/Education?id=@Model.user.userID">Education</a>
+    </li>
 }
 else
 {
     <p>No experience information available for this user.</p>
 }
+

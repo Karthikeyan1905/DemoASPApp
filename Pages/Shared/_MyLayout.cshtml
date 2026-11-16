@@ -27,33 +27,32 @@
         <div class="row">
             <!-- Sidebar -->
             @{
-                var userId = "#";
-                bool isPromoted = false;
-                @if (Model.user != null)
+                var baseModel = Model as DemoASPApp.model.BaseModel;
 
-                {
-                    userId = Model.user.userID.ToString();
-                    isPromoted = Common.employees != null && Common.employees.Any(e => e.UserID == Model.user.userID);
-                }
-                <nav class="col-md-2 sidebar">
-                    <ul class="nav flex-column">
+                var defaultUserId = baseModel?.CurrentUser?.userID.ToString() ?? "#";
+                var defaultIsPromoted = baseModel?.IsPromoted ?? false;
 
-                        <li class="nav-item"><a class="nav-link" href="/UserData?id=@userId">User Info</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Address?id=@userId">Address</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/ExperianceData?id=@userId">Experience</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Education?id=@userId">Education</a></li>
-                        @if (isPromoted)
-                        {
-                            <li class="nav-item"><a class="nav-link" href="/Employee?id=@userId">Employee</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Department?id=@userId">Department</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Designation?id=@userId">Designation</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Team?id=@userId">Team</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/TeamUser?id=@userId">Team Users</a></li>
-                        }
-                    </ul>
-                </nav>
+                var userId = (ViewData["UserIdForMenu"] as string) ?? defaultUserId;
+                var isPromoted = (ViewData["IsPromotedUser"] as bool?) ?? defaultIsPromoted;
             }
 
+            <nav class="col-md-2 sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="/UserData?id=@userId">User Info</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Address?id=@userId">Address</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ExperianceData?id=@userId">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Education?id=@userId">Education</a></li>
+
+                    @if (isPromoted)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Employee?id=@userId">Employee</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Department?id=@userId">Department</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Designation?id=@userId">Designation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Team?id=@userId">Team</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/TeamUser?id=@userId">Team Users</a></li>
+                    }
+                </ul>
+            </nav>
             <!-- Main content area -->
             <main class="col-md-10 py-4">
                 @RenderBody()

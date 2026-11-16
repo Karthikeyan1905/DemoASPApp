@@ -6,12 +6,16 @@
 
 <h1>Team</h1>
 
-@if (Model.user != null )
+@if (Model.user != null && Model.team != null)
 {
-    <p><strong>User Name:</strong> </p>
-    <p><strong>Team:</strong></p>
+    <div class="border rounded p-3 shadow-sm">
+        <p><strong>User ID:</strong> @Model.user.userID</p>
+        <p><strong>User Name:</strong> @Model.user.userName</p>
+        <p><strong>Team ID:</strong> @Model.team.teamID</p>
+        <p><strong>Team Name:</strong> @Model.team.teamName</p>
+    </div>
 }
 else
 {
-    <p>No team information available for this user.</p>
+    <p class="text-muted">No team information available for this user.</p>
 }

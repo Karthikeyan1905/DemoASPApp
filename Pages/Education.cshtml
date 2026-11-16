@@ -1,17 +1,17 @@
 ﻿@page
 @model DemoASPApp.Pages.UserEducationModel
 @using UserManagement.Model.User
-@using UserManagement.User;
+
 @{
     Layout = "_MyLayout";
 }
 
 <h2>User Education Details</h2>
 
-@if (Model.user != null && Model.user.educations != null && Model.user.educations.Count > 0)
+@if (Model.education != null && Model.education.Count >0)
 {
     
-        @foreach (Education edu in Model.user.educations)
+    @foreach (Education edu in Model.education)
         {
             <div class="company-card">
                 <ul>

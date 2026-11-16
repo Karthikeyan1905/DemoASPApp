@@ -13,16 +13,36 @@ namespace DemoASPApp.Pages
         public Employee Employee { get; set; }
         [BindProperty]
         public UserInfo user { get; set; }
-        //public UserInfo user { get { if (Employee != null) { return Employee.user; } return null; } }
+        public List<Department> departmentList { get; set; } = new List<Department>();
+        public List<Employee> EmployeeList { get; set; } = new List<Employee>();
+        private readonly HttpClientConnector _httpClientConnector;
 
-
-        public void OnGet(int id)
+        public DepartmentModel(HttpClientConnector httpClientConnector)
         {
-            if (Common.employees != null)
-                Employee = Common.employees.FirstOrDefault(e => e.UserID == id);
+            _httpClientConnector = httpClientConnector;
+        }
 
-            if (Common.users != null)
-                user = Common.users.FirstOrDefault(u => u.userID == id);
+        public async Task<IActionResult> OnGetAsync()
+        {
+            string id = Request.Query["id"];
+            if (!string.IsNullOrEmpty(id))
+            {
+                var queryParams = new Dictionary<string, string> { { "userID", id } };
+                var users = await _httpClientConnector.GetAsync<List<UserInfo>>("http://localhost:5112/UserInfo/Select", queryParams);
+                user = users?.FirstOrDefault();
+                departmentList = await _httpClientConnector.GetAsync<List<Department>>("http://localhost:5112/Department/Select", queryParams);
+                EmployeeList = await _httpClientConnector.GetAsync<List<Employee>>("http://localhost:5112/Employee/Select", queryParams);
+                
+                var isPromotedUser = EmployeeList.Any();
+
+                ViewData["UserIdForMenu"] = user.userID.ToString();
+                ViewData["IsPromotedUser"] = isPromotedUser;
+
+                IsPromoted = isPromotedUser;
+
+            }
+            await LoadPromotionStatus(_httpClientConnector);
+            return Page();
         }
     }
 }

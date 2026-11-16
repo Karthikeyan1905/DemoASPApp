@@ -1,35 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
+using UserManagement.Model.Department;
 using UserManagement.Model.User;
 
 namespace DemoASPApp.model
 {
-    public class BaseModel:PageModel
+    public class BaseModel : PageModel
     {
-        [BindProperty]
-        
+        private UserInfo _currentUser;
+
         public UserInfo CurrentUser
         {
             get
             {
-                if (TempData["sessionUser"] != null)
+                if (_currentUser != null) return _currentUser;
+
+                if (TempData["sessionUser"] is string json && !string.IsNullOrEmpty(json))
                 {
                     TempData.Keep("sessionUser");
-                    string json = TempData["sessionUser"] as string;
-                    return JsonSerializer.Deserialize<UserInfo>(json);
+                    _currentUser = JsonSerializer.Deserialize<UserInfo>(json);
                 }
-                return null;
+
+                return _currentUser;
+            }
+            set
+            {
+                _currentUser = value;
+                TempData["sessionUser"] = JsonSerializer.Serialize(value);
+                TempData.Keep("sessionUser");
             }
         }
-        public bool IsAdmin => CurrentUser?.userRoleID == 1;
-
-        public void LoadSession()
+        public async Task LoadPromotionStatus(HttpClientConnector connector)
         {
-            TempData["sessionUser"] = JsonSerializer.Serialize(CurrentUser);
-            TempData.Keep("sessionUser");
+            if (CurrentUser != null)
+            {
+                var empParams = new Dictionary<string, string>
+        {
+            { "userID", CurrentUser.userID.ToString() },
+            { "status", "A" }
+        };
+
+                var employees = await connector.GetAsync<List<Employee>>("http://localhost:5112/Employee/Select", empParams);
+                IsPromoted = employees.Any();
+            }
         }
-        
+
+        public bool IsPromoted { get; set; } = false;
+        public bool IsAdmin => CurrentUser?.userRoleID == 1;
+        public void SetPromotionStatus(bool promoted)
+        {
+            IsPromoted = promoted;
+        }
     }
 }

@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="model\Common.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UserManagementModel\UserManagementModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="UserManagement">
       <HintPath>..\UserManagement\bin\Debug\net8.0\UserManagement.dll</HintPath>
     </Reference>

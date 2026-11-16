@@ -2,7 +2,6 @@
 @using DemoASPApp.Pages
 @using DemoASPApp.model
 @using UserManagement.Model.User
-@using UserManagement.User
 @model DemoASPApp.Pages.ViewUserModel
 @{
     Layout = "_Layout";
@@ -23,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (UserInfo user in Common.users)
+        @foreach (UserInfo user in Model.users)
         {
             if (user.userRoleID == 1)
             {
@@ -33,12 +32,13 @@
                 <td>@user.userID</td>
                 <td>@user.userName</td>
                 <td>@user.fatherName</td>
-                <td>@user.AadhaarNumber</td>
+                <td>@user.aadhaarNumber</td>
                 <td>
                     <input type="hidden" name="userID" value="@user.userID" />
                     <a href="/UserData?id=@user.userID">View</a>
                     @{
-                        bool isPromoted = Common.employees != null && Common.employees.Any(e => e.UserID == user.userID);
+                        bool isPromoted = Model.PromotedUserIds.Contains(user.userID);
+
                     }
                     @if (!isPromoted)
                     {
@@ -52,15 +52,15 @@
                 <td>
                     <form method="post" asp-page-handler="ChangeStatus">
                         <input type="hidden" name="userID" value="@user.userID" />
-                        @if (user.Status == "P")
+                        @if (user.status == "P")
                         {
                             <button type="submit" name="newStatus" value="A">Change to Active</button>
                         }
-                        else if (user.Status == "A")
+                        else if (user.status == "A")
                         {
                             <button type="submit" name="newStatus" value="I">Change to Inactive</button>
                         }
-                        else if (user.Status == "I")
+                        else if (user.status == "IA")
                         {
                             <button type="submit" name="newStatus" value="A">Change to Active</button>
                         }

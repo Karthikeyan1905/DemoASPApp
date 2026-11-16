@@ -1,17 +1,29 @@
-﻿@page 
-@model DemoASPApp.Pages.DesignationModel
+﻿@page
+@model DemoASPApp.Pages.DepartmentModel
 @{
     Layout = "_MyLayout";
 }
 
-<h1>Designation</h1>
+<h2>Designation Employee Details</h2>
 
-@if (Model.Employee == null)
+@if (Model.EmployeeList != null && Model.EmployeeList.Any())
 {
-    <p style="color:red;">This user is not yet registered as an employee.</p>
+    <div class="row">
+        @foreach (var emp in Model.EmployeeList)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="border rounded p-3 shadow-sm">
+                    <p><strong>Employee ID:</strong> @emp.employeeID</p>
+                    <p><strong>User ID:</strong> @emp.user?.userID</p>
+                    <p><strong>User Name:</strong> @emp.user?.userName</p>
+                    <p><strong>Designation ID:</strong> @emp.designation?.designationID</p>
+                    <p><strong>Designation Name:</strong> @emp.designation?.designationName</p>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
-    <p><strong>Designation:</strong> @Model.Employee.Designation?.Name</p>
-    <p><strong>Short Name:</strong> @Model.Employee.Designation?.ShortName</p>
+    <p class="text-muted">No employee records found for this designation.</p>
 }

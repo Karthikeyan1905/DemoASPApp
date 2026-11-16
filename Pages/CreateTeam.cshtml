@@ -1,0 +1,58 @@
+﻿    @page
+    @model CreateTeamModel
+
+    <h1>Create Team </h1>
+
+    <form method="post">
+        <label>Team Name:</label>
+        <input type="text" name="TeamName"  />
+
+        <label>Team Code:</label>
+        <input type="text" name="TeamCode"  />
+
+        <button type="submit">Create Team</button>
+    </form>
+
+
+    <hr />
+
+    <h2>Existing Teams</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Team ID</th>
+                <th>Team Name</th>
+                <th>Team Code</th>
+                <th>Add User</th>
+                <th>Add Stage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var team in Model.Teams)
+            {
+                <tr>
+                    <td>@team.teamID</td>
+                    <td>@team.teamName</td>
+                    <td>@team.teamCode</td>
+                    <td>
+                        <a asp-page="/AddUsertoTeam" asp-route-teamID="@team.teamID">Add User</a>
+                    </td>
+                <td>
+                    @{
+                        var assignedStage = Model.TeamStages.FirstOrDefault(ts => ts.teamid == team.teamID && ts.status == "A");
+                        if (assignedStage != null)
+                        {
+                            <a asp-page="/CreateTeam" asp-route-teamStageID="@assignedStage.teamstageid" asp-route-teamID="@team.teamID">Delete Stage</a>
+                        }
+                        else
+                        {
+                            <a asp-page="/AddStage" asp-route-teamID="@team.teamID">Add Stage</a>
+                        }
+                    }
+                </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+

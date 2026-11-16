@@ -1,0 +1,46 @@
+﻿@page "{teamID:int}"
+@model AddUsertoTeamModel
+@{
+    ViewData["Title"] = "Add User in Team";
+}
+
+<h1>Add User in Team</h1>
+
+<p><strong>Team Name:</strong> @Model.TeamName</p>
+
+<form method="post" asp-route-teamID="@Model.TeamID">
+    <label>Select Username:</label>
+    <select asp-for="SelectedUserID" asp-items="@(new SelectList(Model.Users.Where(u => !Model.TeamUsers.Any(tu => tu.userid == u.userID)), "userID", "userName"))">
+        <option value="">-- Select User --</option>
+    </select>
+
+    <button type="submit">Assign User</button>
+</form>
+
+
+
+<hr />
+
+<h2>Assigned Users in <strong>@Model.TeamName</strong></h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teamUser in Model.TeamUsers)
+        {
+            var matchedUser = Model.Users.FirstOrDefault(u => u.userID == teamUser.userid);
+            <tr>
+                <td>@teamUser.userid</td>
+                <td>@(matchedUser?.userName ?? "Unknown")</td>
+                <td>@teamUser.status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

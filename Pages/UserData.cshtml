@@ -1,43 +1,57 @@
 ﻿@page
 @model DemoASPApp.Pages.UserDataModel
-@using UserManagement.User;
+@using UserManagementModel.Model
+
 @{
     Layout = "_MyLayout";
 }
-<ul>
-    <li><strong>User ID:</strong> @Model.user.userID</li>
-    <li><strong>Name:</strong> @Model.user.userName</li>
-    <li><strong>Father Name:</strong> @Model.user.fatherName</li>
-    <li><strong>Mother Name:</strong> @Model.user.motherName</li>
-    <li><strong>Aadhaar Number:</strong> @Model.user.AadhaarNumber</li>
-    <li><strong>Email:</strong> @Model.user.email</li>
-    @if (Model.user?.phone != null && Model.user.phone.Count >= 2)
+
+@if (Model.user == null)
+{
+    <p class="text-danger">User not found or not loaded.</p>
+}
+else
+{
+    <h2>User Details</h2>
+    <ul class="list-unstyled">
+        <li><strong>User ID:</strong> @Model.user.userID</li>
+        <li><strong>Name:</strong> @Model.user.userName</li>
+        <li><strong>Father Name:</strong> @Model.user.fatherName</li>
+        <li><strong>Mother Name:</strong> @Model.user.motherName</li>
+        <li><strong>Aadhaar Number:</strong> @Model.user.aadhaarNumber</li>
+        <li><strong>Email:</strong> @Model.user.email</li>
+        <li><strong>PAN:</strong> @Model.user.panCardNo</li>
+        <li><strong>Passport:</strong> @Model.user.passportNo</li>
+    </ul>
+
+    @if (Model.userPhones?.Count > 0)
     {
-        <ul>
-            <li><strong>Primary Phone:</strong> @Model.user.phone[0].phoneNumber</li>
-            <li><strong>Secondary Phone:</strong> @Model.user.phone[1].phoneNumber</li>
-        </ul>
-    }
-    else if (Model.user?.phone != null && Model.user.phone.Count == 1)
-    {
-        <ul>
-            <li><strong>Primary Phone No:</strong> @Model.user.phone[0].phoneNumber</li>
-            <li><strong>Secondary Phone No:</strong> Not available</li>
-        </ul>
+        <h4 class="mt-4">Phone Numbers</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Phone Type</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead><br />
+            <tbody>
+                @foreach (var phone in Model.userPhones.Distinct())
+                {
+                    <tr>
+                        <td>@phone.phoneType</td>
+                        <td>@(phone.phoneno != 0 ? phone.phoneno.ToString() : "N/A")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {
-        <p>No phone numbers available.</p>
+        <div class="alert alert-info">No phone records found for this user.</div>
     }
 
-
-    <li><strong>PAN:</strong> @Model.user.panCardNo</li>
-    <li><strong>Passport:</strong> @Model.user.passportNo</li>
-  
-</ul>
-
-<li class="nav-item" style="list-style:none">
-    <a href="/Address?id=@Model.user.userID" class="btn btn-primary">View Address</a>
-    <a href="/Index1" class="btn btn-primary">Back to View</a>
-
-</li>
+    <div class="mt-3">
+        <a href="/Address?id=@Model.user.userID" class="btn btn-primary">View Address</a>
+        <a href="/Index1" class="btn btn-secondary">Back to View</a>
+    </div>
+}

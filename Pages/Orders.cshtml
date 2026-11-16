@@ -1,0 +1,354 @@
+﻿@page
+@model OrdersModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+
+        select {
+            margin: 10px 0;
+            padding: 8px;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        #productDetails {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ccc;
+            width: 320px;
+            display: none;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+            .quantity-controls button {
+                padding: 6px 12px;
+                font-size: 16px;
+                background: #007bff;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+
+                .quantity-controls button:hover {
+                    background: #0056b3;
+                }
+
+        .quantity-display {
+            font-size: 18px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        #saveBtn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            font-size: 16px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+            #saveBtn:hover {
+                background: #218838;
+            }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+            table th {
+                background-color: #343a40;
+                color: #ffffff;
+                padding: 12px;
+                font-size: 15px;
+                text-align: left;
+            }
+
+            table td {
+                border: 1px solid #ccc;
+                padding: 10px;
+                font-size: 14px;
+                color: #333;
+            }
+
+        #submitOrder {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+            #submitOrder:hover {
+                background: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <h1>Orders</h1>
+
+    <label>User Name:</label>
+    <select id="userInfoSelect"><option value="">-- Select User --</option></select>
+
+    <label>Category:</label>
+    <select id="categorySelect"><option value="">-- Select Category --</option></select>
+
+    <label>Subcategory:</label>
+    <select id="subcategorySelect" disabled><option value="">-- Select Subcategory --</option></select>
+
+    <label>Product:</label>
+    <select id="productSelect" disabled><option value="">-- Select Product --</option></select>
+
+    <div id="productDetails">
+        <p>Price: ₹<span id="productPrice">0.00</span></p>
+        <p>Quantity: <span id="quantity">0</span></p>
+
+        <div class="quantity-controls">
+            <button id="decreaseBtn">-</button>
+            <span class="quantity-display" id="quantityDisplay">0</span>
+            <button id="increaseBtn">+</button>
+        </div>
+        <p>Total: ₹<span id="totalPrice">0.00</span></p>
+    </div>
+    <br />
+    <button id="saveBtn">Save</button>
+
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button id="submitOrder">Save Order</button>
+
+    <script>
+        let allUsers = [], allCategories = [], allSubcategories = [], allProducts = [];
+        let selectedProduct = null, quantity = 0;
+
+               async function loadInitialData() {
+            const [users, cats, subs, prods] = await Promise.all([
+                fetch("http://localhost:5112/UserInfo/Select?status=A").then(r => r.json()),
+                fetch("http://localhost:5112/Category/Select?status=A").then(r => r.json()),
+                fetch("http://localhost:5112/Subcategory/Select?status=A").then(r => r.json()),
+                fetch("http://localhost:5112/Product/Select?status=A").then(r => r.json())
+            ]);
+
+            allUsers = users;
+            allCategories = cats;
+            allSubcategories = subs;
+            allProducts = prods;
+
+            const userInfoSelect = document.getElementById("userInfoSelect");
+            const categorySelect = document.getElementById("categorySelect");
+
+            userInfoSelect.innerHTML = '<option value="">-- Select User --</option>';
+            allUsers.forEach(u => {
+                userInfoSelect.innerHTML += `<option value="${u.userID}">${u.userName}</option>`;
+            });
+
+            categorySelect.innerHTML = '<option value="">-- Select Category --</option>';
+            allCategories.forEach(c => {
+                categorySelect.innerHTML += `<option value="${c.categoryId}">${c.categoryName}</option>`;
+            });
+
+            setupEventListeners();
+        }
+
+
+        function setupEventListeners() {
+            const categorySelect = document.getElementById("categorySelect");
+            const subcategorySelect = document.getElementById("subcategorySelect");
+            const productSelect = document.getElementById("productSelect");
+            const productDetails = document.getElementById("productDetails");
+            const priceEl = document.getElementById("productPrice");
+            const qtyEl = document.getElementById("quantityDisplay");
+            const totalEl = document.getElementById("totalPrice");
+            const incBtn = document.getElementById("increaseBtn");
+            const decBtn = document.getElementById("decreaseBtn");
+            const saveBtn = document.getElementById("saveBtn");
+
+            function updateTotal() {
+                qtyEl.textContent = quantity;
+                document.getElementById("quantity").textContent = quantity;
+                totalEl.textContent = (selectedProduct.productPrice * quantity).toFixed(2);
+            }
+
+            categorySelect.addEventListener("change", () => {
+                const catId = +categorySelect.value;
+                subcategorySelect.innerHTML = '<option value="">-- Select Subcategory --</option>';
+                productSelect.innerHTML = '<option value="">-- Select Product --</option>';
+                productDetails.style.display = "none";
+
+                const filteredSubcategories = allSubcategories.filter(s =>
+                    s.categoryId === catId &&
+                    allProducts.some(p => p.subcategoryId === s.subcategoryId)
+                );
+                filteredSubcategories.forEach(s => {
+                    subcategorySelect.innerHTML += `<option value="${s.subcategoryId}">${s.subcategoryName}</option>`;
+                });
+
+                subcategorySelect.disabled = false;
+                productSelect.disabled = true;
+            });
+
+            subcategorySelect.addEventListener("change", () => {
+                const subId = +subcategorySelect.value;
+                productSelect.innerHTML = '<option value="">-- Select Product --</option>';
+                productDetails.style.display = "none";
+
+                const filteredProducts = allProducts.filter(p => p.subcategoryId === subId);
+                filteredProducts.forEach(p => {
+                    productSelect.innerHTML += `<option value="${p.productId}">${p.productName}</option>`;
+                });
+
+                productSelect.disabled = false;
+            });
+
+            productSelect.addEventListener("change", () => {
+                const prodId = +productSelect.value;
+                selectedProduct = allProducts.find(p => p.productId === prodId);
+                if (selectedProduct) {
+                    quantity = 0;
+                    priceEl.textContent = selectedProduct.productPrice.toFixed(2);
+                    updateTotal();
+                    productDetails.style.display = "block";
+                } else {
+                            qtyEl.textContent = "0";
+                            document.getElementById("quantity").textContent = "0";
+                            totalEl.textContent = "0.00";
+                    productDetails.style.display = "none";
+                }
+            });
+
+            incBtn.addEventListener("click", () => {
+                if (selectedProduct) { quantity++; updateTotal(); }
+            });
+
+            decBtn.addEventListener("click", () => {
+                if (selectedProduct && quantity > 0) { quantity--; updateTotal(); }
+            });
+
+            saveBtn.addEventListener("click", () => {
+                if (!selectedProduct || quantity === 0) return;
+
+                const userId = +document.getElementById("userInfoSelect").value;
+                const categoryId = +categorySelect.value;
+                const subcategoryId = +subcategorySelect.value;
+                const productId = selectedProduct.productId;
+                const price = selectedProduct.productPrice;
+                const total = price * quantity;
+                const rowQuantity = quantity;
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                  <td data-userid="${userId}">${userInfoSelect.selectedOptions[0].text}</td>
+                  <td data-categoryid="${categoryId}">${categorySelect.selectedOptions[0].text}</td>
+                  <td data-subcategoryid="${subcategoryId}">${subcategorySelect.selectedOptions[0].text}</td>
+                  <td data-productid="${productId}">${selectedProduct.productName}</td>
+                  <td data-quantity="${quantity}">${quantity}</td>
+
+                  <td data-price="${price}">₹${price.toFixed(2)}</td>
+                  <td data-total="${total}">₹${total.toFixed(2)}</td>
+                `;
+                document.querySelector("#cartTable tbody").appendChild(row);
+                      
+                categorySelect.selectedIndex = 0;
+                subcategorySelect.innerHTML = '<option value="">-- Select Subcategory --</option>';
+                productSelect.innerHTML = '<option value="">-- Select Product --</option>';
+                productDetails.style.display = "none";
+                selectedProduct = null;
+                quantity = 0;
+
+                subcategorySelect.disabled = true;
+                productSelect.disabled = true;
+            });
+                        const submitBtn = document.getElementById("submitOrder");
+
+            submitBtn.addEventListener("click", async () => {
+                const userId = +document.getElementById("userInfoSelect").value;
+                const stageId = 1;
+                    const orderStatus = "P"; // for Order table
+                    const productStatus = "A";
+                    const createdBy = userId;
+
+                if (!userId) {
+                    alert("Please select a user before saving the order.");
+                    return;
+                }
+
+                const orderResponse = await fetch(`http://localhost:5112/Order/Insert?userid=${userId}&stageid=${stageId}&status=${orderStatus}&createdby=${createdBy}`, {
+                    method: "POST"
+                });
+
+                const orderResult = await orderResponse.json();
+                if (orderResult.code !== 200) {
+                    alert("Failed to create order.");
+                    return;
+                }
+
+                const newOrderId = orderResult.returnvalue;
+
+                const rows = document.querySelectorAll("#cartTable tbody tr");
+                for (let row of rows) {
+                    const categoryId = row.cells[1].getAttribute("data-categoryid");
+                    const subcategoryId = row.cells[2].getAttribute("data-subcategoryid");
+                    const productId = row.cells[3].getAttribute("data-productid");
+                    const rowQuantity  = +row.cells[4].getAttribute("data-quantity");
+                    const price = row.cells[5].getAttribute("data-price");
+                    const actualPrice = row.cells[6].getAttribute("data-total");
+        const productInsertUrl = `http://localhost:5112/OrderProduct/Insert?orderid=${newOrderId}&categoryid=${categoryId}&subcategoryid=${subcategoryId}&productid=${productId}&quantity=${rowQuantity}&orderproductprice=${price}&orderproductdiscount=0&orderproductactualprice=${actualPrice}&status=${productStatus}&createdby=${createdBy}`;const productResponse = await fetch(productInsertUrl, { method: "POST" });
+                    const productResult = await productResponse.json();
+
+                    if (productResult.code !== 200) {
+                        console.warn("Failed to insert product:", productId);
+                    }
+                }
+
+                alert("Order saved successfully!");
+                document.querySelector("#cartTable tbody").innerHTML = "";
+            });
+        }
+        document.addEventListener("DOMContentLoaded", loadInitialData);
+    </script>
+</body>
+</html>

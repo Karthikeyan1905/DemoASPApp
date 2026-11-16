@@ -4,14 +4,25 @@
     Layout = "_MyLayout";
 }
 
-<h1>Team User</h1>
+<h2>Team User Details</h2>
 
-@if (Model.user != null)
+@if (Model.teamUser != null && Model.teamUser.Any())
 {
-    <p><strong>User Name:</strong> </p>
-    <p><strong>Team:</strong> </p>
+    <div class="row">
+        @foreach (var user in Model.teamUser)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="border rounded p-3 shadow-sm">
+                    <p><strong>Team ID:</strong> @user.teamID</p>
+                    <p><strong>TeamUser ID:</strong> @user.teamuserID</p>
+                    <p><strong>Employee ID:</strong> @user.employeeID</p>
+                    <p><strong>User ID:</strong> @user.userid</p>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
-    <p>No team information available for this user.</p>
+    <p class="text-muted">No team members found for this user.</p>
 }
